@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("motion")}</script>
-<title>EduNique Home, curated</title>
-<meta name="description" content="Design mock: EduNique Home rearranged into one curated, playful story using only existing copy and assets.">
+<title>EduNique: every child learns differently</title>
+<meta name="description" content="The SICA test shows how your child learns. Self-Directed Learning Books build real understanding away from screens, and hands-on projects put it to use.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
@@ -335,18 +335,6 @@ section{position:relative}
 .ftr ul{display:flex;flex-wrap:wrap;gap:12px 24px}
 .ftr p{flex-basis:100%;font-size:var(--fs-small)}
 
-/* ============ DESIGN NOTES LAYER (mock only, hidden by default) ============ */
-.dn{display:none}
-.notes-on .dn{display:block;position:absolute;z-index:40;top:16px;right:16px}
-.dn .pin{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--hotdeep);color:var(--white);border:2px dashed var(--white);font:800 var(--fs-small)/1 "Nunito",sans-serif;cursor:pointer;box-shadow:0 3px 0 var(--ink)}
-.dn .card{display:none;position:absolute;right:0;top:48px;width:300px;background:var(--ink);color:var(--white);border:2px dashed var(--white);border-radius:var(--r-s);padding:12px 14px;font-size:var(--fs-small);line-height:1.45;box-shadow:0 4px 0 var(--pink)}
-.dn:hover .card,.dn:focus-within .card,.dn.open .card{display:block}
-.dn b{color:var(--white)}
-.dn .need{display:block;margin-top:8px;border:2px dashed var(--bubble);border-radius:8px;padding:6px 8px;color:var(--white)}
-.dn--left{right:auto!important;left:16px}.dn--left .card{right:auto;left:0}
-.dn--low{top:auto!important;bottom:16px}.dn--low .card{top:auto;bottom:48px}
-.notes-toggle{position:fixed;right:16px;bottom:16px;z-index:60;background:var(--ink);color:var(--white);border:2px dashed var(--white);border-radius:var(--r-s);padding:12px 16px;font:700 var(--fs-small)/1 "Nunito",sans-serif;cursor:pointer;box-shadow:0 4px 0 var(--pink)}
-.notes-toggle[aria-pressed="true"]{background:var(--hotdeep)}
 
 /* ============ RESPONSIVE ============ */
 @media (max-width:1024px){
@@ -385,8 +373,6 @@ section{position:relative}
   .crew{gap:16px;top:-56px}.crew .lens,.crew .gear{width:72px}.crew .pencil{width:44px}
   .handoff .helper{width:70px;margin-top:-72px}.handoff .helper.pencil{width:46px}
   .chap-head{margin-bottom:32px}
-  .notes-on .dn{position:relative;top:auto;right:auto;left:auto!important;bottom:auto!important;margin:0 var(--gut) 24px}
-  .notes-on .dn .card{display:block;position:static;width:auto;margin-top:8px}
 }
 @media (max-width:480px){
   .pgrid{grid-template-columns:1fr 1fr;gap:14px}
@@ -503,7 +489,6 @@ section{position:relative}
 
 <!-- ========== 1 HERO ========== -->
 <section class="hero" id="top" aria-labelledby="h1">
-  <aside class="dn" data-n="1"><b>One sticker headline.</b> The three-colour sticker is used here and nowhere else, so the page has one opening. Every other heading is plain Baloo 2. (Audit §4; report: "Stickers mark the one page headline")</aside>
   <div class="wrap hero-grid">
     <div>
       <h1 class="stickers" id="h1"><span class="stk stk--white">Every child</span><br><span class="stk stk--blue">learns differently.</span><br><span class="stk stk--pink">We start there.</span></h1>
@@ -532,12 +517,10 @@ section{position:relative}
       <figcaption class="sr" id="stage-cap">The SICA test start screen in LearningSpace, two EduNique books, a Skill Box and the Zing robotics kit, with three drawn helpers: a magnifier, a pencil and a gear.</figcaption>
     </figure>
   </div>
-  <aside class="dn dn--left dn--low" data-n="2"><b>Helpers belong to a pillar.</b> Magnifier = Understand, pencil = Learn, gear = Apply. Each sits by its numbered tag here, then appears once at the end of its own chapter, then all three meet in the closing band.</aside>
 </section>
 
 <!-- ========== 2 OVERVIEW ========== -->
 <section class="overview" id="plan" aria-labelledby="plan-h">
-  <aside class="dn" data-n="3"><b>The plan comes right after the promise.</b> Understand, Learn, Apply is the page's spine (StoryBrand "plan"). One fixed name per pillar everywhere: the SICA test / books and Skill Boxes / projects and robotics kits. Card colours are the approved world-card colours.</aside>
   <div class="wrap">
     <div class="overview-head">
       <h2 id="plan-h">How EduNique helps your child learn</h2>
@@ -579,7 +562,6 @@ section{position:relative}
 
 <!-- ========== 3 UNDERSTAND (navy) ========== -->
 <section class="chapter u dark" id="understand" aria-labelledby="u-h">
-  <aside class="dn" data-n="4"><b>Two SICA sections became one.</b> The brain map and the 7 steps share this navy band. The gradient, blur blobs and soft shadow are gone; the steps are a compact list. The LearningSpace tour moved here from Aura, because it shows the test list. <span class="need">Content needed from EduNique: SICA price and age range (not shown, not invented).</span></aside>
   <div class="wrap">
     <div class="chap-head">
       <p class="tag"><span class="num num--u">1</span><span><b>Understand</b><span class="t">The SICA test</span></span></p>
@@ -650,7 +632,6 @@ section{position:relative}
 </section>
 
 <div class="handoff" aria-label="Next chapter">
-  <aside class="dn" data-n="5"><b>The helper's one job: point to the next step.</b> The white strip also keeps every blue field from touching a pink one (blue and pink at equal lightness vibrate, 1.32:1).</aside>
   <div class="wrap">
     <span class="helper lens" aria-hidden="true" style="width:86px"><svg viewBox="0 0 130 140" focusable="false" overflow="visible"><rect x="80" y="84" width="20" height="56" rx="10" transform="rotate(-40 90 112)" fill="#D83995"/><circle cx="56" cy="56" r="46" fill="#09318D"/><circle cx="56" cy="56" r="35" fill="#DDF3FB"/><circle class="eye-w" cx="56" cy="54" r="17" fill="#fff"/><circle class="pupil" cx="62" cy="58" r="8" fill="#09318D"/><path d="M44 76 Q56 84 68 76" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg></span>
     <a class="bubble-link" href="#learn"><span class="num num--l" aria-hidden="true">2</span><span><small>Next</small><strong>Learn: books and Skill Boxes</strong></span><svg class="down" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v15M5 12l7 7 7-7"/></svg></a>
@@ -659,7 +640,6 @@ section{position:relative}
 
 <!-- ========== 4 LEARN (pale sky) ========== -->
 <section class="chapter l" id="learn" aria-labelledby="l-h">
-  <aside class="dn" data-n="6"><b>Learn gets its own band.</b> "See the books in use" is now an H2 with its build-note eyebrow removed, and the Skill Box video moved here from the trust section. Taped clip = the one video frame; tilt only on real objects.</aside>
   <div class="wrap">
     <div class="chap-head">
       <p class="tag"><span class="num num--l">2</span><span><b>Learn</b><span class="t">Books and Skill Boxes</span></span></p>
@@ -708,7 +688,6 @@ section{position:relative}
 
 <!-- ========== 5 APPLY (pale bubble, graph paper) ========== -->
 <section class="chapter a" id="apply" aria-labelledby="a-h">
-  <aside class="dn" data-n="7"><b>The one scene that explains something.</b> "Read it. Get it. Build it." stays: the book turns into the kit along a drawn path. Its steps use the same numbered chip as everything else. Apply keeps the approved pale bubble field.</aside>
   <div class="wrap">
     <div class="chap-head">
       <p class="tag"><span class="num num--a">3</span><span><b>Apply</b><span class="t">Projects and robotics kits</span></span></p>
@@ -804,7 +783,6 @@ section{position:relative}
 
 <!-- ========== 6 AURA (periwinkle) ========== -->
 <section class="aura" id="aura" aria-labelledby="aura-h">
-  <aside class="dn" data-n="8"><b>Aura is the guide, not a fourth product.</b> The band shows only the real chat. An "Ask Aura" link sits in every chapter head, so the guide travels with the parent through all three steps.</aside>
   <div class="wrap split">
     <div class="stack">
       <p class="aura-mark"><span class="num num--aura" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="8.5" y="2.5" width="7" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>Aura, the AI voice tutor</p>
@@ -821,7 +799,6 @@ section{position:relative}
 
 <!-- ========== 7 FOUNDER ========== -->
 <section class="founder" id="founder" aria-labelledby="f-h">
-  <aside class="dn" data-n="9"><b>Founder after the plan.</b> The guide's empathy moment, set as a plain pull quote so it never competes with the hero. No empty half: the band is text only. <span class="need">Content needed from EduNique: Akanksha's photo (not shown until supplied).</span></aside>
   <div class="wrap founder-grid">
     <div>
       <svg class="qmark" viewBox="0 0 72 56" aria-hidden="true" focusable="false"><path d="M0 56V32C0 14 10 3 28 0l3 8C20 12 15 19 15 28h14v28zm41 0V32C41 14 51 3 69 0l3 8C61 12 56 19 56 28h14v28z"/></svg>
@@ -830,14 +807,13 @@ section{position:relative}
     <div class="stack">
       <p class="said">“How could I be average in a classroom and extraordinary outside it?”</p>
       <p class="measure">Akanksha struggled to understand concepts, to stay interested, and to apply what she learned. Read how that question led her and her mother to start EduNique.</p>
-      <div><a class="btn btn--secondary" href="https://skillioner-new.local/about-us/">Read Akanksha’s story</a></div>
+      <div><a class="btn btn--secondary" href="#founder">Read Akanksha’s story</a></div>
     </div>
   </div>
 </section>
 
 <!-- ========== 8 SHOP ========== -->
 <section class="shop" id="shop" aria-labelledby="shop-h">
-  <aside class="dn" data-n="10"><b>One product card everywhere.</b> Tilted card, swing-tag price, wavy "View product" link. Tabs and panels wear the pillar colour: Skill Boxes and books = Learn (sky), robotics kits = Apply (bubble). Try "Add to cart": the springy pop is used only when something is added.</aside>
   <div class="wrap">
     <div class="shop-head">
       <h2 id="shop-h">Shop the EduNique range</h2>
@@ -853,14 +829,14 @@ section{position:relative}
       <div class="panel-head">
         <h3>Skill Boxes</h3>
         <p>A planned set of books and activities for one age band, with a curriculum you can read first.</p>
-        <a class="link" href="https://skillioner-new.local/product-category/skill-box/">See all Skill Boxes</a>
+        <a class="link" href="#shop">See all Skill Boxes</a>
         <ul class="chips"><li class="chip">Ages 2 to 10, in four age bands</li><li class="chip">From ₹3,599</li></ul>
       </div>
       <ul class="pgrid">
-        <li class="pc"><div class="art"><img src="assets/skill-box-2-4-years-01.webp" alt="Skill Box, ages 2 to 4: open, showing its books, flash cards and stickers" width="1014" height="1014" loading="lazy"><span class="price"><b>₹3,599</b></span></div><div class="body"><p class="name">Skill Box (2 – 4 Years)</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/skill-box-2-4-years/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Skill Box (2 – 4 Years)">Add to cart</button></div></div></li>
-        <li class="pc"><div class="art"><img src="assets/skill-box-5-6-years-01.webp" alt="Skill Box, ages 5 to 6: open, showing its books, flash cards and stickers" width="1014" height="1014" loading="lazy"><span class="price"><b>₹4,799</b></span></div><div class="body"><p class="name">Skill Box (5 – 6 Years)</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/skill-box-5-6-years/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Skill Box (5 – 6 Years)">Add to cart</button></div></div></li>
-        <li class="pc"><div class="art"><img src="assets/skill-box-7-8-years-01.webp" alt="Skill Box, ages 7 to 8: open, showing its books, flash cards and stickers" width="1014" height="1014" loading="lazy"><span class="price"><b>₹5,999</b></span></div><div class="body"><p class="name">Skill Box (7-8 Years)</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/skill-box-7-8-years/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Skill Box (7-8 Years)">Add to cart</button></div></div></li>
-        <li class="pc"><div class="art"><img src="assets/skill-box-9-10-years-01.webp" alt="Skill Box, ages 9 to 10: open, showing its books, flash cards and stickers" width="1014" height="1014" loading="lazy"><span class="price"><b>₹7,099</b></span></div><div class="body"><p class="name">Skill Box (9-10 Years)</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/skill-box-9-10-years/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Skill Box (9-10 Years)">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/skill-box-2-4-years-01.webp" alt="Skill Box, ages 2 to 4: open, showing its books, flash cards and stickers" width="1014" height="1014" loading="lazy"><span class="price"><b>₹3,599</b></span></div><div class="body"><p class="name">Skill Box (2 – 4 Years)</p><div class="foot"><a class="link" href="#shop">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Skill Box (2 – 4 Years)">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/skill-box-5-6-years-01.webp" alt="Skill Box, ages 5 to 6: open, showing its books, flash cards and stickers" width="1014" height="1014" loading="lazy"><span class="price"><b>₹4,799</b></span></div><div class="body"><p class="name">Skill Box (5 – 6 Years)</p><div class="foot"><a class="link" href="#shop">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Skill Box (5 – 6 Years)">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/skill-box-7-8-years-01.webp" alt="Skill Box, ages 7 to 8: open, showing its books, flash cards and stickers" width="1014" height="1014" loading="lazy"><span class="price"><b>₹5,999</b></span></div><div class="body"><p class="name">Skill Box (7-8 Years)</p><div class="foot"><a class="link" href="#shop">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Skill Box (7-8 Years)">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/skill-box-9-10-years-01.webp" alt="Skill Box, ages 9 to 10: open, showing its books, flash cards and stickers" width="1014" height="1014" loading="lazy"><span class="price"><b>₹7,099</b></span></div><div class="body"><p class="name">Skill Box (9-10 Years)</p><div class="foot"><a class="link" href="#shop">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Skill Box (9-10 Years)">Add to cart</button></div></div></li>
       </ul>
     </div>
 
@@ -868,14 +844,14 @@ section{position:relative}
       <div class="panel-head">
         <h3>Self-Directed Learning Books</h3>
         <p>Self-directed practice books for handwriting, phonics, maths, science and thinking skills.</p>
-        <a class="link" href="https://skillioner-new.local/product-category/books/">See all Self-Directed Learning Books</a>
+        <a class="link" href="#shop">See all Self-Directed Learning Books</a>
         <ul class="chips"><li class="chip">From ₹349</li></ul>
       </div>
       <ul class="pgrid">
-        <li class="pc"><div class="art"><img src="assets/phonics-book-case-6-levels-01.webp" alt="Phonics book case, 6 levels cover" width="1200" height="1200" loading="lazy"><span class="price">From <b>₹3,199</b></span></div><div class="body"><p class="name">Phonics Book case (6 levels)</p><p class="meta">Nursery – LKG (3-4 years)</p><p class="desc">Reading doesn’t click until phonics does.</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/phonics-book-case-6-levels/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Phonics Book case (6 levels)">Add to cart</button></div></div></li>
-        <li class="pc"><div class="art"><img src="assets/critical-thinking-book-01.webp" alt="Critical Thinking Book cover" width="1001" height="1200" loading="lazy"><span class="price">From <b>₹1,899</b></span></div><div class="body"><p class="name">Critical Thinking Book</p><p class="meta">Class 3-4 (8-9 years)</p><p class="desc">Most books teach your child what to think.</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/critical-thinking-book/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Critical Thinking Book">Add to cart</button></div></div></li>
-        <li class="pc"><div class="art"><img src="assets/math-masters-book-level-1-to-3-01.webp" alt="Math Masters, levels 1 to 3 cover" width="1200" height="1200" loading="lazy"><span class="price">From <b>₹2,699</b></span></div><div class="body"><p class="name">Math Masters book level 1 to 3</p><p class="meta">Class 3-4 (8-9 years)</p><p class="desc">Most maths books test what your child already knows.</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/math-masters-book-level-1-to-3/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Math Masters book level 1 to 3">Add to cart</button></div></div></li>
-        <li class="pc"><div class="art"><img src="assets/spelling-practice-refresher-01.webp" alt="Spelling Practice Refresher cover" width="1200" height="1200" loading="lazy"><span class="price"><b>₹899</b></span></div><div class="body"><p class="name">Spelling Practice Refresher</p><p class="meta">Class 1-2 (6-7 years)</p><p class="desc">The Spelling Practice Refresher helps children aged 6–7 years build strong spelling, phonics and vocabulary skills.</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/spelling-practice-refresher/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Spelling Practice Refresher">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/phonics-book-case-6-levels-01.webp" alt="Phonics book case, 6 levels cover" width="1200" height="1200" loading="lazy"><span class="price">From <b>₹3,199</b></span></div><div class="body"><p class="name">Phonics Book case (6 levels)</p><p class="meta">Nursery – LKG (3-4 years)</p><p class="desc">Reading doesn’t click until phonics does.</p><div class="foot"><a class="link" href="#shop">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Phonics Book case (6 levels)">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/critical-thinking-book-01.webp" alt="Critical Thinking Book cover" width="1001" height="1200" loading="lazy"><span class="price">From <b>₹1,899</b></span></div><div class="body"><p class="name">Critical Thinking Book</p><p class="meta">Class 3-4 (8-9 years)</p><p class="desc">Most books teach your child what to think.</p><div class="foot"><a class="link" href="#shop">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Critical Thinking Book">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/math-masters-book-level-1-to-3-01.webp" alt="Math Masters, levels 1 to 3 cover" width="1200" height="1200" loading="lazy"><span class="price">From <b>₹2,699</b></span></div><div class="body"><p class="name">Math Masters book level 1 to 3</p><p class="meta">Class 3-4 (8-9 years)</p><p class="desc">Most maths books test what your child already knows.</p><div class="foot"><a class="link" href="#shop">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Math Masters book level 1 to 3">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/spelling-practice-refresher-01.webp" alt="Spelling Practice Refresher cover" width="1200" height="1200" loading="lazy"><span class="price"><b>₹899</b></span></div><div class="body"><p class="name">Spelling Practice Refresher</p><p class="meta">Class 1-2 (6-7 years)</p><p class="desc">The Spelling Practice Refresher helps children aged 6–7 years build strong spelling, phonics and vocabulary skills.</p><div class="foot"><a class="link" href="#shop">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Spelling Practice Refresher">Add to cart</button></div></div></li>
       </ul>
     </div>
 
@@ -883,14 +859,14 @@ section{position:relative}
       <div class="panel-head">
         <h3>Robotics Kits</h3>
         <p>Build and code at home. 15 days of robotics classes free with each purchase.</p>
-        <a class="link" href="https://skillioner-new.local/product-category/stem-robotics/">See all robotics kits</a>
+        <a class="link" href="#shop">See all robotics kits</a>
         <ul class="chips"><li class="chip">From age 6, 8 or 12, by kit</li><li class="chip">From ₹5,899</li></ul>
       </div>
       <ul class="pgrid">
-        <li class="pc"><div class="art"><img src="assets/play-mex-01.webp" alt="Play Mex kit parts" width="1000" height="1000" loading="lazy"><span class="price">From <b>₹8,299</b></span></div><div class="body"><p class="name">Play Mex</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/play-mex/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Play Mex">Add to cart</button></div></div></li>
-        <li class="pc"><div class="art"><img src="assets/play-tronix-01.webp" alt="Play Tronix kit parts" width="1080" height="1010" loading="lazy"><span class="price">From <b>₹11,799</b></span></div><div class="body"><p class="name">Play Tronix</p><p class="desc">Most kits teach electronics as theory.</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/play-tronix/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Play Tronix">Add to cart</button></div></div></li>
-        <li class="pc"><div class="art"><img src="assets/zing-01.webp" alt="Zing kit parts" width="1000" height="1000" loading="lazy"><span class="price">From <b>₹82,599</b></span></div><div class="body"><p class="name">Zing</p><p class="desc">Most robots stand still and wait for commands.</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/zing/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Zing">Add to cart</button></div></div></li>
-        <li class="pc"><div class="art"><img src="assets/roboki-t1-01.webp" alt="Roboki-t1 kit parts" width="1000" height="1000" loading="lazy"><span class="price">From <b>₹5,899</b></span></div><div class="body"><p class="name">Roboki-t1</p><p class="desc">Most robotic kits give kids a fixed toy.</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/roboki-t1/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Roboki-t1">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/play-mex-01.webp" alt="Play Mex kit parts" width="1000" height="1000" loading="lazy"><span class="price">From <b>₹8,299</b></span></div><div class="body"><p class="name">Play Mex</p><div class="foot"><a class="link" href="#shop">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Play Mex">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/play-tronix-01.webp" alt="Play Tronix kit parts" width="1080" height="1010" loading="lazy"><span class="price">From <b>₹11,799</b></span></div><div class="body"><p class="name">Play Tronix</p><p class="desc">Most kits teach electronics as theory.</p><div class="foot"><a class="link" href="#shop">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Play Tronix">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/zing-01.webp" alt="Zing kit parts" width="1000" height="1000" loading="lazy"><span class="price">From <b>₹82,599</b></span></div><div class="body"><p class="name">Zing</p><p class="desc">Most robots stand still and wait for commands.</p><div class="foot"><a class="link" href="#shop">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Zing">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/roboki-t1-01.webp" alt="Roboki-t1 kit parts" width="1000" height="1000" loading="lazy"><span class="price">From <b>₹5,899</b></span></div><div class="body"><p class="name">Roboki-t1</p><p class="desc">Most robotic kits give kids a fixed toy.</p><div class="foot"><a class="link" href="#shop">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Roboki-t1">Add to cart</button></div></div></li>
       </ul>
     </div>
   </div>
@@ -898,7 +874,6 @@ section{position:relative}
 
 <!-- ========== 9 LOOK INSIDE (pale bubble) ========== -->
 <section class="inside" id="inside" aria-labelledby="in-h">
-  <aside class="dn" data-n="11"><b>Reassurance before the last ask.</b> Parents want to check what they buy and how returns work, so curricula and policies sit together, plain and legible. <span class="need">Content needed from EduNique: real parent reviews (name, city, child's age), sample pages for the books, and what is inside each robotics kit. Nothing is faked here.</span></aside>
   <div class="wrap split">
     <div class="stack">
       <h2 id="in-h">Look inside before you decide</h2>
@@ -906,15 +881,15 @@ section{position:relative}
     </div>
     <div>
       <ul class="pdfs" data-reveal>
-        <li><a href="https://skillioner-new.local/wp-content/uploads/edunique/pdf/Catalogue-2-4-Skill-Box.pdf" target="_blank" rel="noopener" type="application/pdf"><svg viewBox="0 0 30 36" aria-hidden="true" focusable="false"><path d="M2 2h18l8 8v24H2z" fill="#FFD6EC" stroke="#09318D" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 2v8h8M8 18h14M8 24h10" fill="none" stroke="#09318D" stroke-width="2.5" stroke-linecap="round"/></svg><span><b>Skill Box, ages 2–4</b><span>Curriculum (PDF)</span></span></a></li>
-        <li><a href="https://skillioner-new.local/wp-content/uploads/edunique/pdf/Catalogue-5-6yrs-Skill-Box.pdf" target="_blank" rel="noopener" type="application/pdf"><svg viewBox="0 0 30 36" aria-hidden="true" focusable="false"><path d="M2 2h18l8 8v24H2z" fill="#FFD6EC" stroke="#09318D" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 2v8h8M8 18h14M8 24h10" fill="none" stroke="#09318D" stroke-width="2.5" stroke-linecap="round"/></svg><span><b>Skill Box, ages 5–6</b><span>Curriculum (PDF)</span></span></a></li>
-        <li><a href="https://skillioner-new.local/wp-content/uploads/edunique/pdf/Catalogue-7-8-yrs-Skill-Box.pdf" target="_blank" rel="noopener" type="application/pdf"><svg viewBox="0 0 30 36" aria-hidden="true" focusable="false"><path d="M2 2h18l8 8v24H2z" fill="#FFD6EC" stroke="#09318D" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 2v8h8M8 18h14M8 24h10" fill="none" stroke="#09318D" stroke-width="2.5" stroke-linecap="round"/></svg><span><b>Skill Box, ages 7–8</b><span>Curriculum (PDF)</span></span></a></li>
-        <li><a href="https://skillioner-new.local/wp-content/uploads/edunique/pdf/Catalogue-9-10-yrs-Skill-Box.pdf" target="_blank" rel="noopener" type="application/pdf"><svg viewBox="0 0 30 36" aria-hidden="true" focusable="false"><path d="M2 2h18l8 8v24H2z" fill="#FFD6EC" stroke="#09318D" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 2v8h8M8 18h14M8 24h10" fill="none" stroke="#09318D" stroke-width="2.5" stroke-linecap="round"/></svg><span><b>Skill Box, ages 9–10</b><span>Curriculum (PDF)</span></span></a></li>
+        <li><a href="#inside"><svg viewBox="0 0 30 36" aria-hidden="true" focusable="false"><path d="M2 2h18l8 8v24H2z" fill="#FFD6EC" stroke="#09318D" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 2v8h8M8 18h14M8 24h10" fill="none" stroke="#09318D" stroke-width="2.5" stroke-linecap="round"/></svg><span><b>Skill Box, ages 2–4</b><span>Curriculum (PDF)</span></span></a></li>
+        <li><a href="#inside"><svg viewBox="0 0 30 36" aria-hidden="true" focusable="false"><path d="M2 2h18l8 8v24H2z" fill="#FFD6EC" stroke="#09318D" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 2v8h8M8 18h14M8 24h10" fill="none" stroke="#09318D" stroke-width="2.5" stroke-linecap="round"/></svg><span><b>Skill Box, ages 5–6</b><span>Curriculum (PDF)</span></span></a></li>
+        <li><a href="#inside"><svg viewBox="0 0 30 36" aria-hidden="true" focusable="false"><path d="M2 2h18l8 8v24H2z" fill="#FFD6EC" stroke="#09318D" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 2v8h8M8 18h14M8 24h10" fill="none" stroke="#09318D" stroke-width="2.5" stroke-linecap="round"/></svg><span><b>Skill Box, ages 7–8</b><span>Curriculum (PDF)</span></span></a></li>
+        <li><a href="#inside"><svg viewBox="0 0 30 36" aria-hidden="true" focusable="false"><path d="M2 2h18l8 8v24H2z" fill="#FFD6EC" stroke="#09318D" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 2v8h8M8 18h14M8 24h10" fill="none" stroke="#09318D" stroke-width="2.5" stroke-linecap="round"/></svg><span><b>Skill Box, ages 9–10</b><span>Curriculum (PDF)</span></span></a></li>
       </ul>
       <ul class="policies">
-        <li><a class="link" href="https://skillioner-new.local/shipping-policy/">Shipping policy</a></li>
-        <li><a class="link" href="https://skillioner-new.local/refund-and-return-policy/">Refunds and returns</a></li>
-        <li><a class="link" href="https://skillioner-new.local/contact-us/">Contact EduNique</a></li>
+        <li><a class="link" href="#inside">Shipping policy</a></li>
+        <li><a class="link" href="#inside">Refunds and returns</a></li>
+        <li><a class="link" href="#inside">Contact EduNique</a></li>
       </ul>
     </div>
   </div>
@@ -922,7 +897,6 @@ section{position:relative}
 
 <!-- ========== 10 FINAL CTA ========== -->
 <section class="final" aria-labelledby="end-h">
-  <aside class="dn dn--low" data-n="12"><b>One closing ask, and the helpers meet again.</b> The navy panel sits on white, so navy never touches the pale bubble band above or a navy footer below. "Take the SICA test" is the same hot-pink button as in the hero and chapter 1.</aside>
   <div class="wrap">
     <div class="final-panel dark" data-reveal>
       <div class="crew" aria-hidden="true">
@@ -942,7 +916,6 @@ section{position:relative}
 </main>
 
 <footer class="ftr">
-  <aside class="dn" data-n="13"><b>System caps in this mock.</b> 3 button styles (hot-pink primary, white secondary, wavy text link) in 2 sizes; radii 14, 26 and circle; 2 shadows (navy 6px and 3px); 7 type sizes; 3 section paddings; 1 numbered chip; 1 media frame (+ tape for video); motion: 3 durations, 2 easings.</aside>
   <div class="wrap">
     <img src="assets/edunique-logo-bluepink.png" alt="EduNique" width="300" height="70" loading="lazy">
     <ul>
@@ -950,14 +923,12 @@ section{position:relative}
       <li><a class="link" href="#understand">SICA test</a></li>
       <li><a class="link" href="#aura">AI Voice Tutor</a></li>
       <li><a class="link" href="#founder">About</a></li>
-      <li><a class="link" href="https://skillioner-new.local/contact-us/">Contact</a></li>
+      <li><a class="link" href="#inside">Contact</a></li>
     </ul>
-    <p>Design mock for review, built only from the current staging copy and assets. Nothing on the live site has changed.</p>
   </div>
 </footer>
 
 <p class="sr" aria-live="polite" id="announce"></p>
-<button type="button" class="notes-toggle" aria-pressed="false" id="notes-toggle">Show design notes</button>
 
 <script>
 (function(){
@@ -999,23 +970,6 @@ section{position:relative}
     });
   });
 
-  /* design notes layer: each note becomes a numbered pin that opens its card */
-  d.querySelectorAll('.dn').forEach(function(n){
-    var card=d.createElement('div'); card.className='card'; card.id='note-'+n.dataset.n;
-    while(n.firstChild){card.appendChild(n.firstChild)}
-    var pin=d.createElement('button'); pin.type='button'; pin.className='pin'; pin.textContent=n.dataset.n;
-    pin.setAttribute('aria-label','Design note '+n.dataset.n); pin.setAttribute('aria-expanded','false'); pin.setAttribute('aria-controls',card.id);
-    pin.addEventListener('click',function(){var o=n.classList.toggle('open');pin.setAttribute('aria-expanded',o)});
-    n.setAttribute('aria-label','Design note '+n.dataset.n);
-    n.appendChild(pin); n.appendChild(card);
-  });
-
-  var tg=d.getElementById('notes-toggle');
-  tg.addEventListener('click',function(){
-    var on=d.body.classList.toggle('notes-on');
-    tg.setAttribute('aria-pressed',on); tg.textContent=on?'Hide design notes':'Show design notes';
-  });
-  if(location.hash==='#notes'){tg.click()}
 })();
 </script>
 <script src="assets/vendor/gsap.min.js"></script>
