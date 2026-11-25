@@ -1,0 +1,1257 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("motion")}</script>
+<title>EduNique Home, curated</title>
+<meta name="description" content="Design mock: EduNique Home rearranged into one curated, playful story using only existing copy and assets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS (the whole system) ============ */
+:root{
+  /* palette: approved list only */
+  --navy:#09318D; --ink:#10204F; --blue:#3366FF; --pink:#FF3366; --hot:#D83995; --hotdeep:#A0236B;
+  --bubble:#FD91CC; --bubble-pale:#FFD6EC; --peri:#9DB7FF; --peri-pale:#E4EBFF; --sky:#0593C6; --sky-pale:#DDF3FB; --white:#FFFFFF;
+  /* one outline, two radii (+ circle), two shadows */
+  --line:3px solid var(--navy);
+  --r-s:14px; --r-l:26px;
+  --pop:0 6px 0 var(--navy);
+  --pop-s:0 3px 0 var(--navy);
+  /* seven type sizes */
+  --fs-display:clamp(34px,3.7vw,54px);
+  --fs-h2:clamp(34px,3.7vw,54px);
+  --fs-h3:clamp(22px,2vw,28px);
+  --fs-lead:clamp(18px,1.5vw,21px);
+  --fs-ui:19px;
+  --fs-body:17px;
+  --fs-small:14px;
+  /* three section paddings */
+  --pad-l:120px; --pad-m:88px; --pad-s:40px;
+  /* motion: three durations, two easings */
+  --d1:120ms; --d2:200ms; --d3:320ms;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --spring:cubic-bezier(.34,1.8,.5,1);
+  --wrap:1200px; --gut:24px;
+  --focus:var(--blue);
+}
+@media (max-width:760px){
+  :root{--pad-l:72px; --pad-m:56px; --pad-s:28px; --gut:16px}
+}
+
+/* ============ BASE ============ */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--white);color:var(--ink);font:500 var(--fs-body)/1.6 "Nunito",system-ui,sans-serif;overflow-x:hidden}
+img,video,svg{display:block;max-width:100%}
+img,video{height:auto}
+h1,h2,h3{font-family:"Baloo 2",system-ui,sans-serif;font-weight:800;color:var(--navy);margin:0;line-height:1.05;letter-spacing:-.01em;text-wrap:balance}
+h2{font-size:var(--fs-h2)}
+h3{font-size:var(--fs-h3);line-height:1.15}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+a{color:inherit}
+::selection{background:var(--bubble);color:var(--ink)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:4px}
+.dark{--focus:var(--white)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:16px;top:-60px;z-index:100;background:var(--white);border:var(--line);border-radius:var(--r-s);padding:8px 16px;font-weight:700}
+.skip:focus{top:12px}
+.lead{font-size:var(--fs-lead);line-height:1.5;max-width:34em}
+.small{font-size:var(--fs-small);line-height:1.5}
+.measure{max-width:62ch}
+.stack>*+*{margin-top:24px}
+.stack-s>*+*{margin-top:12px}
+section{position:relative}
+
+/* ============ BUTTONS: 3 styles only ============ */
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 26px;border:var(--line);border-radius:var(--r-s);
+  font:800 var(--fs-ui)/1 "Baloo 2",sans-serif;text-decoration:none;box-shadow:var(--pop);cursor:pointer;
+  transition:transform var(--d1) var(--ease),box-shadow var(--d1) var(--ease)}
+.btn:hover{transform:translateY(3px);box-shadow:var(--pop-s)}
+.btn:active{transform:translateY(6px);box-shadow:none}
+.btn--primary{background:var(--hot);color:var(--white)}            /* white on hot 4.25:1, label 19px/800 = large text */
+.btn--secondary{background:var(--white);color:var(--navy)}
+.btn--sm{min-height:44px;padding:0 18px;box-shadow:var(--pop-s)}
+.btn--sm:hover{transform:translateY(2px);box-shadow:0 1px 0 var(--navy)}
+.ctas{display:flex;flex-wrap:wrap;gap:16px}
+/* text link: the wavy underline is the one link treatment */
+.link{color:var(--navy);font-weight:700;text-decoration:underline wavy var(--pink);text-decoration-thickness:2px;text-underline-offset:6px;
+  transition:text-underline-offset var(--d1) var(--ease)}
+.link:hover{text-underline-offset:9px}
+.dark .link{color:var(--white)}
+.link svg{display:inline-block;vertical-align:-3px;width:18px;height:18px;margin-right:6px}
+
+/* ============ NUMBERED CHIP: the one numbering style ============ */
+.num{display:inline-grid;place-items:center;flex:none;width:40px;height:40px;border:var(--line);border-radius:50%;
+  font:800 var(--fs-ui)/1 "Baloo 2",sans-serif;box-shadow:var(--pop-s);background:var(--white);color:var(--navy)}
+.num--u{background:var(--blue);color:var(--white)}   /* 4.68:1 */
+.num--l{background:var(--sky);color:var(--white)}    /* 3.50:1, large bold numeral */
+.num--a{background:var(--bubble);color:var(--navy)}  /* 5.50:1 */
+.num--aura{background:var(--white);color:var(--navy)}
+.num svg{width:20px;height:20px}
+
+/* pillar tag (used in hero, chapter heads) */
+.tag{display:inline-flex;align-items:center;gap:12px;background:var(--white);border:var(--line);border-radius:var(--r-s);box-shadow:var(--pop-s);padding:6px 16px 6px 6px;line-height:1.15}
+.tag b{font:800 var(--fs-ui)/1.1 "Baloo 2",sans-serif;color:var(--navy);display:block}
+.tag span.t{font-size:var(--fs-small);font-weight:700;color:var(--ink)}
+
+/* chip (non-interactive facts) */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-block;background:var(--white);border:var(--line);border-radius:var(--r-s);padding:4px 12px;font-size:var(--fs-small);font-weight:700;color:var(--navy)}
+
+/* ============ MEDIA FRAME: the one frame (+ tape modifier for video) ============ */
+.frame{margin:0;position:relative}
+.frame .mat{background:var(--white);border:var(--line);border-radius:var(--r-l);box-shadow:var(--pop);padding:8px;overflow:hidden}
+.frame .mat>img,.frame .mat>video{border-radius:calc(var(--r-l) - 10px);width:100%}
+.frame figcaption{margin-top:16px;font-size:var(--fs-small);line-height:1.5;max-width:46ch}
+.frame--tape::before{content:"";position:absolute;z-index:2;top:-14px;left:50%;width:96px;height:28px;margin-left:-48px;background:var(--pink);opacity:.8;border-radius:4px;transform:rotate(-4deg)}
+.tilt-l{transform:rotate(-2.5deg)}
+.tilt-r{transform:rotate(2.5deg)}
+
+/* helper characters */
+.helper svg{width:100%;height:auto;overflow:visible}
+
+/* ============ HEADER ============ */
+.hdr{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:var(--line)}
+.hdr .wrap{display:flex;align-items:center;gap:32px;min-height:72px}
+.hdr .logo img{height:34px;width:auto}
+.hdr nav{margin-left:auto}
+.hdr nav ul{display:flex;gap:28px}
+.hdr nav a{font-weight:700;color:var(--navy);text-decoration:none;font-size:var(--fs-body)}
+.hdr nav a:hover{text-decoration:underline wavy var(--pink);text-underline-offset:6px}
+.cart{position:relative;display:grid;place-items:center;width:48px;height:48px;border:var(--line);border-radius:var(--r-s);box-shadow:var(--pop-s);color:var(--navy);background:var(--white)}
+.cart svg{width:24px;height:24px}
+.cart .count{position:absolute;top:-10px;right:-10px;min-width:26px;height:26px;padding:0 6px;border-radius:13px;background:var(--navy);color:var(--white);font:700 var(--fs-small)/26px "Nunito",sans-serif;text-align:center;font-variant-numeric:tabular-nums}
+@media (max-width:900px){.hdr nav{display:none}.hdr .cart{margin-left:auto}}
+
+/* ============ SIGNATURE SPRING (only when something is added) ============ */
+@keyframes pop{0%{transform:scale(.96)}55%{transform:scale(1.14)}100%{transform:scale(1)}}
+.popped{animation:pop var(--d3) var(--spring)}
+
+/* ============ CALM REVEAL ============ */
+.js [data-reveal]{opacity:0;translate:0 16px;transition:opacity var(--d3) var(--ease),translate var(--d3) var(--ease)}
+.js [data-reveal].in{opacity:1;translate:0 0}
+
+/* ============ 1 HERO ============ */
+.hero{background:var(--bubble);background-image:radial-gradient(var(--white) 2px,transparent 2.5px);background-size:28px 28px;padding:var(--pad-m) 0 calc(var(--pad-m) + 24px)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:24px;background:radial-gradient(circle at 20px 24px,var(--white) 19px,transparent 20px) repeat-x;background-size:40px 24px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.stickers{font-size:var(--fs-display);line-height:1.12}
+.stk{display:inline-block;border:var(--line);border-radius:var(--r-s);box-shadow:var(--pop);padding:0 .22em .04em;margin:0 0 .14em}
+.stk--white{background:var(--white);color:var(--navy)}
+.stk--blue{background:var(--blue);color:var(--white);margin-left:.5em}
+.stk--pink{background:var(--pink);color:var(--white);margin-left:.2em}
+.hero .lead{margin:28px 0 32px;color:var(--ink)}
+.aura-chip{display:inline-flex;align-items:center;gap:12px;margin-top:28px;background:var(--white);border:var(--line);border-radius:var(--r-s);box-shadow:var(--pop-s);padding:8px 16px 8px 8px;font-size:var(--fs-small);font-weight:700;color:var(--ink)}
+.aura-chip .num{width:36px;height:36px;box-shadow:none;background:var(--peri)}
+.stage{position:relative;aspect-ratio:1/1;width:100%;max-width:600px;margin:0 0 0 auto}
+.stage .mat-circle{position:absolute;inset:7% 3% 3% 7%;border-radius:50%;border:var(--line);box-shadow:var(--pop);background:var(--white);background-image:radial-gradient(var(--peri) 2px,transparent 2.5px);background-size:24px 24px}
+.stage>*{position:absolute}
+.s-tablet{left:9%;top:6%;width:54%}
+.s-tablet .mat{padding:6px}
+.s-box{right:-2%;top:15%;width:42%;transform:rotate(4deg);filter:drop-shadow(0 6px 0 var(--navy))}
+.s-books{left:5%;top:50%;width:44%;height:42%}
+.s-books .frame{position:absolute;width:62%}
+.s-books .frame .mat{padding:4px;border-radius:var(--r-s)}
+.s-books .frame .mat>img{border-radius:6px}
+.s-books .b1{left:0;top:0;transform:rotate(-7deg)}
+.s-books .b2{left:34%;top:12%;transform:rotate(4deg)}
+.s-zing{right:1%;bottom:10%;width:35%}
+.s-tag1{left:46%;top:0}
+.s-tag2{left:2%;bottom:0}
+.s-tag3{right:-1%;bottom:0}
+.s-lens{left:0;top:0;width:15%}
+.s-pencil{left:47%;top:50%;width:9%}
+.s-gear{right:33%;bottom:17%;width:13%}
+
+/* ============ 2 OVERVIEW ============ */
+.overview{padding:var(--pad-m) 0}
+.overview-head{display:grid;grid-template-columns:5fr 6fr;gap:48px;align-items:end;margin-bottom:56px}
+.worlds{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:w}
+.world{border:var(--line);border-radius:var(--r-l);box-shadow:var(--pop);padding:0 28px 32px;display:flex;flex-direction:column;gap:12px}
+.world .art{height:190px;margin:-36px 0 12px;position:relative}
+.world .art .frame{position:absolute}
+.world-u{background:var(--navy);color:var(--white)}
+.world-u h3{color:var(--white)}
+.world-l{background:var(--sky-pale)}
+.world-a{background:var(--bubble-pale)}
+.world .what{font-weight:700;font-size:var(--fs-small)}
+.world-u .what{color:var(--peri)}
+.world-l .what,.world-a .what{color:var(--hotdeep)}
+.world .btn{margin-top:auto;align-self:flex-start}
+.world .hd{display:flex;align-items:center;gap:12px;margin-top:4px}
+.world-u .art .frame{left:6%;width:88%;top:0}
+.world-l .art .b1{left:4%;top:4px;width:44%}
+.world-l .art .b2{left:42%;top:20px;width:44%}
+.world-l .art .frame .mat{padding:4px;border-radius:var(--r-s)}
+.world-l .art .frame .mat>img{border-radius:6px}
+.world-a .art .frame{left:12%;width:64%;top:0}
+.world-a .art .frame .mat>img{aspect-ratio:4/3;object-fit:cover}
+.aura-strip{margin-top:36px;display:flex;align-items:center;gap:20px;background:var(--peri);border:var(--line);border-radius:var(--r-l);box-shadow:var(--pop);padding:24px 28px}
+.aura-strip .num{width:52px;height:52px}
+.aura-strip .num svg{width:26px;height:26px}
+.aura-strip p{color:var(--ink)}
+.aura-strip .btn{margin-left:auto;flex:none}
+
+/* ============ CHAPTERS ============ */
+.chapter{padding:var(--pad-l) 0}
+.chap-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-bottom:48px}
+.u{background:var(--navy);color:var(--white);background-image:radial-gradient(rgba(157,183,255,.35) 2px,transparent 2.5px);background-size:30px 30px}
+.u h2,.u h3{color:var(--white)}
+.u .lead{color:var(--white)}
+.u p{color:var(--peri-pale)}
+.l{background:var(--sky-pale)}
+.a{background:var(--bubble-pale);background-image:linear-gradient(var(--white) 2px,transparent 2px),linear-gradient(90deg,var(--white) 2px,transparent 2px);background-size:32px 32px}
+.aura{background:var(--peri);background-image:radial-gradient(var(--white) 2px,transparent 2.5px);background-size:30px 30px;padding:var(--pad-l) 0}
+.split{display:grid;grid-template-columns:5fr 6fr;gap:64px;align-items:center}
+.split--top{align-items:start}
+
+/* brain map */
+.map{position:relative;height:440px}
+.map .head{position:absolute;left:50%;top:38%;width:150px;transform:translate(-50%,-50%);fill:none;stroke:var(--white);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.map .head .dots{stroke:var(--pink);stroke-dasharray:.02 .06}
+.g{position:absolute;display:flex;flex-direction:column;gap:8px}
+.g p{font:800 var(--fs-ui)/1.1 "Baloo 2",sans-serif;color:var(--peri)}
+.g ul{display:flex;flex-wrap:wrap;gap:8px}
+.g li{border:2px dashed var(--peri);border-radius:var(--r-s);padding:2px 12px;font-size:var(--fs-small);font-weight:700;color:var(--white)}
+.g1,.g2,.g3,.g4{max-width:36%}
+.g1{left:0;top:0}.g2{right:0;top:0;align-items:flex-end}.g2 ul{justify-content:flex-end}
+.g3{left:0;top:40%}.g4{right:0;top:40%;align-items:flex-end}.g4 ul{justify-content:flex-end}
+.g5{left:50%;bottom:0;transform:translateX(-50%);align-items:center;width:max-content;max-width:100%}.g5 ul{justify-content:center}
+.steps-row{display:grid;grid-template-columns:5fr 6fr;gap:64px;margin-top:var(--pad-m);align-items:start}
+.steps li{display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:start;padding:12px 0}
+.steps li+li{border-top:2px dashed rgba(157,183,255,.5)}
+.steps b{display:block;color:var(--white);font-weight:700}
+.steps small{display:block;font-size:var(--fs-small);color:var(--peri-pale);line-height:1.5}
+.u .frame figcaption{color:var(--peri-pale)}
+.media-col{display:grid;gap:48px}
+
+/* learn */
+.clips{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;padding-top:16px}
+.clips .frame:nth-child(2){margin-top:72px}
+.clips video{aspect-ratio:9/16;object-fit:cover;background:var(--navy)}
+.sub{margin-top:48px;padding-top:40px;border-top:3px dashed var(--sky)}
+.sub-grid{display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:start}
+.sub-grid img{transform:rotate(-4deg);filter:drop-shadow(0 4px 0 var(--navy))}
+
+/* apply */
+.apply-steps li{display:flex;align-items:center;gap:16px;font-size:var(--fs-lead)}
+.apply-steps li+li{margin-top:12px}
+.apply-steps b{font-family:"Baloo 2",sans-serif;font-weight:800;color:var(--navy);margin-right:6px}
+.idea{font-size:var(--fs-h3);color:var(--hotdeep)}
+.scene{position:relative;height:500px}
+.scene .book{position:absolute;left:0;top:0;width:42%}
+.scene .kit{position:absolute;right:0;bottom:0;width:50%}
+.scene .arrow{position:absolute;z-index:3;left:36%;top:30%;width:24%;fill:none;stroke:var(--navy);stroke-width:4;stroke-linecap:round;stroke-dasharray:10 12}
+.scene .arrow .tip{stroke-dasharray:none}
+
+/* hand-off strip: the helper's one job */
+.handoff{padding:var(--pad-s) 0;background:var(--white)}
+.handoff .wrap{display:flex;align-items:flex-end;gap:20px}
+.handoff .helper{width:86px;margin-top:-96px;flex:none}
+.handoff .helper.pencil{width:58px}
+.bubble-link{position:relative;display:inline-flex;align-items:center;gap:14px;background:var(--white);border:var(--line);border-radius:var(--r-l);box-shadow:var(--pop-s);padding:12px 22px 12px 12px;text-decoration:none;color:var(--navy);transition:transform var(--d2) var(--ease)}
+.bubble-link::before{content:"";position:absolute;left:-12px;bottom:18px;width:18px;height:18px;background:var(--white);border-left:var(--line);border-bottom:var(--line);transform:rotate(45deg)}
+.bubble-link:hover{transform:translateX(6px)}
+.bubble-link small{display:block;font-size:var(--fs-small);font-weight:700;color:var(--ink)}
+.bubble-link strong{font:800 var(--fs-ui)/1.1 "Baloo 2",sans-serif}
+.bubble-link .down{width:22px;height:22px;stroke:var(--navy);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+
+/* aura */
+.aura .lead{color:var(--ink)}
+.aura .frame .mat>img{border-radius:12px}
+.aura-mark{display:inline-flex;align-items:center;gap:12px;font:800 var(--fs-ui)/1 "Baloo 2",sans-serif;color:var(--navy)}
+.aura-mark .num{width:52px;height:52px}.aura-mark .num svg{width:26px;height:26px}
+
+/* founder */
+.founder{padding:var(--pad-m) 0}
+.founder-grid{display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center}
+.founder .qmark{width:72px;height:56px;fill:var(--pink);margin-bottom:12px}
+.founder h2{font-size:var(--fs-h2);max-width:14em}
+.founder .said{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:var(--fs-h3);line-height:1.2;color:var(--hotdeep)}
+
+/* shop */
+.shop{padding:var(--pad-m) 0}
+.shop-head{display:grid;grid-template-columns:5fr 6fr;gap:48px;align-items:end;margin-bottom:40px}
+.tabs{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:32px}
+.tab{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 10px 0 18px;border:var(--line);border-radius:var(--r-s);background:var(--white);color:var(--navy);font:800 var(--fs-ui)/1 "Baloo 2",sans-serif;box-shadow:var(--pop);cursor:pointer;transition:transform var(--d1) var(--ease),box-shadow var(--d1) var(--ease)}
+.tab .num{width:36px;height:36px;box-shadow:none}
+.tab .cnt{font:700 var(--fs-small)/1 "Nunito",sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}
+.tab[aria-selected="true"]{transform:translateY(3px);box-shadow:var(--pop-s)}
+.tab[aria-selected="true"][data-fam="l"]{background:var(--sky-pale)}
+.tab[aria-selected="true"][data-fam="a"]{background:var(--bubble-pale)}
+.panel{border:var(--line);border-radius:var(--r-l);box-shadow:var(--pop);padding:40px}
+.panel[data-fam="l"]{background:var(--sky-pale)}
+.panel[data-fam="a"]{background:var(--bubble-pale)}
+.panel-head{display:grid;grid-template-columns:auto 1fr auto;gap:12px 32px;align-items:center;margin-bottom:40px}
+.panel-head .chips{grid-column:2}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.pc{background:var(--white);border:var(--line);border-radius:var(--r-l);box-shadow:var(--pop);display:flex;flex-direction:column;transition:transform var(--d2) var(--ease)}
+.pc:nth-child(odd){transform:rotate(-1.5deg)}
+.pc:nth-child(even){transform:rotate(1.5deg)}
+.pc:hover{transform:rotate(0) translateY(-4px)}
+.pc .art{position:relative;aspect-ratio:1/1;margin:8px 8px 0;border-radius:calc(var(--r-l) - 10px);overflow:hidden;background:var(--white)}
+.pc .art img{width:100%;height:100%;object-fit:contain}
+.price{position:absolute;top:14px;right:12px;z-index:2;background:var(--navy);color:var(--white);font:700 var(--fs-small)/1 "Nunito",sans-serif;font-variant-numeric:tabular-nums;padding:8px 12px 8px 22px;
+  clip-path:polygon(12px 0,100% 0,100% 100%,12px 100%,0 50%);transform:rotate(6deg);transform-origin:100% 0;transition:transform var(--d2) var(--ease)}
+.price::before{content:"";position:absolute;left:10px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--white)}
+.pc:hover .price{transform:rotate(-2deg)}
+.price b{font-size:var(--fs-ui);font-weight:700}
+.pc .body{padding:16px 20px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.pc .name{font:700 var(--fs-ui)/1.25 "Nunito",sans-serif;color:var(--navy)}
+.pc .meta{font-size:var(--fs-small);font-weight:700;color:var(--hotdeep)}
+.pc .desc{font-size:var(--fs-small);line-height:1.5}
+.pc .foot{margin-top:auto;padding-top:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.pc .btn--sm{min-height:44px;padding:0 14px;font-size:var(--fs-small)}
+.pc .btn--sm svg{width:16px;height:16px}
+
+/* look inside */
+.inside{background:var(--bubble-pale);padding:var(--pad-m) 0}
+.pdfs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pdfs a{display:flex;align-items:center;gap:14px;background:var(--white);border:var(--line);border-radius:var(--r-s);box-shadow:var(--pop-s);padding:14px 16px;text-decoration:none;color:var(--navy);transition:transform var(--d1) var(--ease)}
+.pdfs a:hover{transform:translateY(-2px)}
+.pdfs svg{width:30px;height:36px;flex:none}
+.pdfs b{display:block;font-weight:700}
+.pdfs span span{font-size:var(--fs-small);color:var(--ink)}
+.policies{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:28px}
+
+/* final */
+.final{padding:var(--pad-m) 0}
+.final-panel{position:relative;background:var(--navy);background-image:radial-gradient(rgba(157,183,255,.35) 2px,transparent 2.5px);background-size:30px 30px;border:var(--line);border-radius:var(--r-l);box-shadow:var(--pop);padding:120px 48px 72px;text-align:center;color:var(--white)}
+.final-panel h2{color:var(--white);font-size:var(--fs-h2)}
+.final-panel .lead{margin:20px auto 32px;color:var(--peri-pale);text-wrap:balance}
+.final-panel .ctas{justify-content:center}
+.crew{position:absolute;left:50%;top:-70px;transform:translateX(-50%);display:flex;align-items:flex-end;gap:28px}
+.crew .lens{width:92px}.crew .pencil{width:56px}.crew .gear{width:92px}
+
+/* footer */
+.ftr{border-top:var(--line);padding:48px 0}
+.ftr .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:24px 40px}
+.ftr img{height:30px;width:auto}
+.ftr ul{display:flex;flex-wrap:wrap;gap:12px 24px}
+.ftr p{flex-basis:100%;font-size:var(--fs-small)}
+
+/* ============ DESIGN NOTES LAYER (mock only, hidden by default) ============ */
+.dn{display:none}
+.notes-on .dn{display:block;position:absolute;z-index:40;top:16px;right:16px}
+.dn .pin{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--hotdeep);color:var(--white);border:2px dashed var(--white);font:800 var(--fs-small)/1 "Nunito",sans-serif;cursor:pointer;box-shadow:0 3px 0 var(--ink)}
+.dn .card{display:none;position:absolute;right:0;top:48px;width:300px;background:var(--ink);color:var(--white);border:2px dashed var(--white);border-radius:var(--r-s);padding:12px 14px;font-size:var(--fs-small);line-height:1.45;box-shadow:0 4px 0 var(--pink)}
+.dn:hover .card,.dn:focus-within .card,.dn.open .card{display:block}
+.dn b{color:var(--white)}
+.dn .need{display:block;margin-top:8px;border:2px dashed var(--bubble);border-radius:8px;padding:6px 8px;color:var(--white)}
+.dn--left{right:auto!important;left:16px}.dn--left .card{right:auto;left:0}
+.dn--low{top:auto!important;bottom:16px}.dn--low .card{top:auto;bottom:48px}
+.notes-toggle{position:fixed;right:16px;bottom:16px;z-index:60;background:var(--ink);color:var(--white);border:2px dashed var(--white);border-radius:var(--r-s);padding:12px 16px;font:700 var(--fs-small)/1 "Nunito",sans-serif;cursor:pointer;box-shadow:0 4px 0 var(--pink)}
+.notes-toggle[aria-pressed="true"]{background:var(--hotdeep)}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1024px){
+  .worlds,.pgrid{grid-template-columns:1fr 1fr}
+  .worlds{row-gap:64px}
+}
+@media (max-width:900px){
+  .hero-grid,.split,.steps-row,.overview-head,.shop-head,.founder-grid{grid-template-columns:1fr;gap:40px}
+  .stage{margin:0 auto}
+  .media-col{gap:40px}
+}
+@media (max-width:760px){
+  .worlds{grid-template-columns:1fr}
+  .world .art{height:180px}
+  .stk--blue{margin-left:.25em}.stk--pink{margin-left:0}
+  .map{height:auto}
+  .map .head{display:none}
+  .g{position:static;transform:none!important;align-items:flex-start!important;width:auto!important;max-width:none!important}
+  .stage .tag .t{display:none}
+  .stage .tag{padding:4px 12px 4px 4px;gap:8px}
+  .stage .tag .num{width:36px;height:36px}
+  .scene .arrow{top:34%}
+  .g ul{justify-content:flex-start!important}
+  .map{display:grid;gap:20px}
+  .aura-strip{flex-wrap:wrap}
+  .aura-strip .btn{margin-left:0}
+  .clips{gap:20px}
+  .clips .frame:nth-child(2){margin-top:48px}
+  .scene{height:380px}
+  .panel{padding:24px 16px}
+  .panel-head{grid-template-columns:1fr;gap:12px}
+  .panel-head .chips{grid-column:auto}
+  .pgrid{gap:20px}
+  .pdfs{grid-template-columns:1fr}
+  .final-panel{padding:104px 20px 56px}
+  .crew{gap:16px;top:-56px}.crew .lens,.crew .gear{width:72px}.crew .pencil{width:44px}
+  .handoff .helper{width:70px;margin-top:-72px}.handoff .helper.pencil{width:46px}
+  .chap-head{margin-bottom:32px}
+  .notes-on .dn{position:relative;top:auto;right:auto;left:auto!important;bottom:auto!important;margin:0 var(--gut) 24px}
+  .notes-on .dn .card{display:block;position:static;width:auto;margin-top:8px}
+}
+@media (max-width:480px){
+  .pgrid{grid-template-columns:1fr 1fr;gap:14px}
+  .pc .body{padding:12px}
+  .pc .name{font-size:var(--fs-body)}
+  .pc .desc{display:none}
+  .pc .foot{flex-direction:column;align-items:flex-start}
+  .price{padding:6px 8px 6px 18px}
+  .price b{font-size:var(--fs-small)}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .js [data-reveal]{opacity:1;translate:none}
+}
+
+/* ============ v2: softer shapes, motion, carousel, build scene ============ */
+/* Semicircle ends only on the hero's Aura voice tutor chip; everything else keeps the system radii. */
+.hero .aura-chip{border-radius:999px;padding-right:20px}
+.hero-grid{gap:56px}
+.hero .lead{margin:24px 0 30px}
+
+/* starting states exist only when motion is allowed (html.motion is set before first paint) */
+.motion .hero .stk,.motion .stage>*{visibility:hidden}
+.motion .world .wc{visibility:hidden}
+
+/* helpers on the world cards */
+.world{position:relative}
+.wc{position:absolute;z-index:2;top:-30px;right:18px;width:64px}
+.wc.wc-pencil{width:40px;top:-46px}
+.wc.wc-gear{width:62px}
+.world .art .frame{will-change:transform}
+
+/* brain map: the magnifier that sweeps the head */
+.map-lens{position:absolute;left:58%;top:16%;width:58px;z-index:2}
+@media (max-width:760px){.map-lens{display:none}}
+
+/* ============ SICA, step by step: a full-screen carousel ============ */
+.chapter.u{padding-bottom:0}
+.sica-show{position:relative;height:calc(100vh - 75px);min-height:560px;max-height:1000px;margin-top:var(--pad-m);background:#0b1638;overflow:hidden;isolation:isolate}
+.sica-show .slide{position:absolute;inset:0;margin:0;visibility:hidden;opacity:0}
+.sica-show .slide.is-on{visibility:visible;opacity:1}
+.slide .bg{position:absolute;inset:-8%;width:116%;max-width:none;height:116%;object-fit:cover;filter:blur(30px) saturate(1.15);opacity:.5}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,49,141,.25),rgba(9,49,141,.55))}
+.slide .shot-wrap{position:absolute;z-index:1;left:50%;top:6%;bottom:calc(20% + 28px);width:min(1180px,90vw);translate:-50% 0;display:flex;align-items:center;justify-content:center}
+.slide .shot{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;background:var(--white);border:var(--line);border-radius:var(--r-l);padding:8px;box-shadow:0 10px 0 var(--navy)}
+.show-cap{position:absolute;z-index:3;left:0;right:0;bottom:0;height:20%;min-height:150px;background:rgba(0,0,0,.62);
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;padding:18px max(var(--gut),calc((100vw - var(--wrap))/2 + var(--gut))) 18px}
+.show-bars{position:absolute;left:max(var(--gut),calc((100vw - var(--wrap))/2 + var(--gut)));right:max(var(--gut),calc((100vw - var(--wrap))/2 + var(--gut)));top:-14px;display:flex;gap:6px}
+.show-bars .bar{flex:1;height:24px;padding:10px 0;border:0;background:none;cursor:pointer}
+.show-bars .bar i{display:block;height:4px;border-radius:2px;background:rgba(255,255,255,.32);overflow:hidden;position:relative}
+.show-bars .bar i::after{content:"";position:absolute;inset:0;background:var(--white);transform:scaleX(var(--fill,0));transform-origin:left}
+.show-n{width:52px;height:52px;font-size:24px;border-color:var(--white);box-shadow:none}
+.show-label{font-size:var(--fs-small);font-weight:700;color:var(--peri-pale)}
+.show-count{color:var(--white)}
+.show-title{color:var(--white);margin:2px 0 4px}
+.show-desc{color:var(--white);opacity:.9;max-width:64ch;font-size:var(--fs-body)}
+.show-ctl{display:flex;gap:10px}
+.ctl{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;border:2px solid var(--white);background:transparent;color:var(--white);cursor:pointer;transition:background var(--d2) var(--ease),color var(--d2) var(--ease)}
+.ctl:hover{background:var(--white);color:var(--navy)}
+.ctl svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.ctl.play .i-play{display:none}.ctl.play[aria-pressed="true"] .i-play{display:block}.ctl.play[aria-pressed="true"] .i-pause{display:none}
+.ctl.play .i-play path{fill:currentColor}
+.sica-show :focus-visible{outline-color:var(--white)}
+@media (max-width:760px){
+  .sica-show{height:88vh;min-height:560px}
+  .slide .shot-wrap{top:4%;bottom:calc(34% + 20px);width:92vw}
+  .show-cap{height:auto;min-height:34%;grid-template-columns:auto 1fr;align-content:center;gap:14px 16px;padding-top:26px}
+  .show-ctl{grid-column:1 / -1}
+  .show-n{width:44px;height:44px;font-size:20px}
+  .show-desc{font-size:var(--fs-small)}
+}
+
+/* learn: the pencil line under the heading */
+#l-h{position:relative;display:inline-block}
+.scribble{display:block;width:min(300px,80%);height:auto;margin-top:6px;overflow:visible}
+.scribble path{fill:none;stroke:var(--hot);stroke-width:5;stroke-linecap:round}
+.clips .frame{will-change:transform}
+
+/* apply: the build scene */
+.scene{height:auto}
+.build{width:100%;height:auto;overflow:visible}
+.motion .apply-steps li{transition:opacity var(--d3) var(--ease)}
+.motion .apply-steps.live li{opacity:.45}
+.motion .apply-steps.live li.on{opacity:1}
+.apply-steps li .num{transition:transform var(--d3) var(--spring),background var(--d2) var(--ease)}
+.apply-steps.live li.on .num{transform:scale(1.15);background:var(--hot);color:var(--white)}
+.idea{transition:color var(--d3) var(--ease)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="EduNique home"><img src="assets/edunique-logo-bluepink.png" alt="EduNique" width="300" height="70"></a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#understand">SICA test</a></li>
+        <li><a href="#aura">AI Voice Tutor</a></li>
+        <li><a href="#founder">About</a></li>
+        <li><a href="#inside">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="cart" href="#shop" aria-label="Cart, 0 items" id="cart">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 4h2.4l2.2 11h10.2l2-8H6.3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="19.5" r="1.8" fill="currentColor"/><circle cx="16.5" cy="19.5" r="1.8" fill="currentColor"/></svg>
+      <span class="count" id="cart-count">0</span>
+    </a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ========== 1 HERO ========== -->
+<section class="hero" id="top" aria-labelledby="h1">
+  <aside class="dn" data-n="1"><b>One sticker headline.</b> The three-colour sticker is used here and nowhere else, so the page has one opening. Every other heading is plain Baloo 2. (Audit §4; report: "Stickers mark the one page headline")</aside>
+  <div class="wrap hero-grid">
+    <div>
+      <h1 class="stickers" id="h1"><span class="stk stk--white">Every child</span><br><span class="stk stk--blue">learns differently.</span><br><span class="stk stk--pink">We start there.</span></h1>
+      <p class="lead">The SICA test shows how your child learns. Self-Directed Learning Books build real understanding away from screens, and hands-on projects put it to use.</p>
+      <div class="ctas">
+        <a class="btn btn--primary" href="https://learningspace.edunique.in/">Take the SICA test</a>
+        <a class="btn btn--secondary" href="#shop">Shop books and kits</a>
+      </div>
+      <p class="aura-chip"><span class="num num--aura" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="8.5" y="2.5" width="7" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span>Aura, the AI voice tutor, is in LearningSpace. <a class="link" href="#aura">Hear how it works</a></span></p>
+    </div>
+    <figure class="stage" aria-labelledby="stage-cap">
+      <span class="mat-circle" aria-hidden="true"></span>
+      <div class="frame s-tablet tilt-l"><div class="mat"><img src="assets/besped-test-start.webp" alt="The SICA test start screen in LearningSpace" width="1280" height="812"></div></div>
+      <img class="s-box" src="assets/skill-box-5-6-open.webp" alt="EduNique Skill Box, open to show its books, flash cards and stickers" width="837" height="900">
+      <div class="s-books" aria-hidden="true">
+        <div class="frame b1"><div class="mat"><img src="assets/phonics-book-case-6-levels-01.webp" alt="" width="1200" height="1200"></div></div>
+        <div class="frame b2"><div class="mat"><img src="assets/science-flow-charts-and-summaries-01.webp" alt="" width="1000" height="1000"></div></div>
+      </div>
+      <img class="s-zing" src="assets/zing-cutout.webp" alt="Zing, a walking humanoid robotics kit" width="760" height="712">
+      <span class="helper s-lens" aria-hidden="true"><svg viewBox="0 0 130 140" focusable="false" overflow="visible"><rect x="80" y="84" width="20" height="56" rx="10" transform="rotate(-40 90 112)" fill="#D83995"/><circle cx="56" cy="56" r="46" fill="#09318D"/><circle cx="56" cy="56" r="35" fill="#DDF3FB"/><g><circle class="eye-w" cx="56" cy="54" r="17" fill="#fff"/><circle class="pupil" cx="56" cy="54" r="8" fill="#09318D"/></g><path d="M44 76 Q56 84 68 76" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg></span>
+      <span class="helper s-pencil" aria-hidden="true"><svg viewBox="0 0 90 200" focusable="false" overflow="visible"><path d="M16 96 C 2 86, -4 70, 4 60" fill="none" stroke="#09318D" stroke-width="5" stroke-linecap="round"/><path d="M74 96 C 88 86, 94 70, 86 60" fill="none" stroke="#09318D" stroke-width="5" stroke-linecap="round"/><rect x="18" y="10" width="54" height="26" rx="10" fill="#D83995"/><rect x="18" y="32" width="54" height="12" fill="#9DB7FF"/><rect x="18" y="42" width="54" height="104" fill="#FD91CC"/><rect x="36" y="42" width="18" height="104" fill="#FFB8DD"/><path d="M18 146 L45 192 L72 146z" fill="#F7D9C8"/><path d="M37 178 L45 192 L53 178z" fill="#09318D"/><circle class="eye-w" cx="34" cy="80" r="7" fill="#fff"/><circle class="pupil" cx="34" cy="80" r="3.4" fill="#09318D"/><circle class="eye-w" cx="56" cy="80" r="7" fill="#fff"/><circle class="pupil" cx="56" cy="80" r="3.4" fill="#09318D"/><path d="M36 102 Q45 112 54 102" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg></span>
+      <span class="helper s-gear" aria-hidden="true"><svg viewBox="0 0 120 120" focusable="false" overflow="visible"><g class="cog"><path d="M53 6h14l3 13 10 4 11-8 10 10-8 11 4 10 13 3v14l-13 3-4 10 8 11-10 10-11-8-10 4-3 13H53l-3-13-10-4-11 8-10-10 8-11-4-10-13-3V53l13-3 4-10-8-11 10-10 11 8 10-4z" fill="#3366FF"/></g><circle cx="60" cy="60" r="30" fill="#EEF2FF"/><circle class="eye-w" cx="50" cy="56" r="7" fill="#fff"/><circle class="pupil" cx="50" cy="56" r="3.4" fill="#09318D"/><circle class="eye-w" cx="70" cy="56" r="7" fill="#fff"/><circle class="pupil" cx="70" cy="56" r="3.4" fill="#09318D"/><path d="M50 72 Q60 80 70 72" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg></span>
+      <p class="tag s-tag1"><span class="num num--u">1</span><span><b>Understand</b><span class="t">The SICA test</span></span></p>
+      <p class="tag s-tag2"><span class="num num--l">2</span><span><b>Learn</b><span class="t">Books and Skill Boxes</span></span></p>
+      <p class="tag s-tag3"><span class="num num--a">3</span><span><b>Apply</b><span class="t">Projects and robotics kits</span></span></p>
+      <figcaption class="sr" id="stage-cap">The SICA test start screen in LearningSpace, two EduNique books, a Skill Box and the Zing robotics kit, with three drawn helpers: a magnifier, a pencil and a gear.</figcaption>
+    </figure>
+  </div>
+  <aside class="dn dn--left dn--low" data-n="2"><b>Helpers belong to a pillar.</b> Magnifier = Understand, pencil = Learn, gear = Apply. Each sits by its numbered tag here, then appears once at the end of its own chapter, then all three meet in the closing band.</aside>
+</section>
+
+<!-- ========== 2 OVERVIEW ========== -->
+<section class="overview" id="plan" aria-labelledby="plan-h">
+  <aside class="dn" data-n="3"><b>The plan comes right after the promise.</b> Understand, Learn, Apply is the page's spine (StoryBrand "plan"). One fixed name per pillar everywhere: the SICA test / books and Skill Boxes / projects and robotics kits. Card colours are the approved world-card colours.</aside>
+  <div class="wrap">
+    <div class="overview-head">
+      <h2 id="plan-h">How EduNique helps your child learn</h2>
+      <p class="lead">Develop skills and engage the cognitive functions involved in learning. The SICA test shows how your child learns, books and Skill Boxes teach, kits put it to use, and Aura answers questions along the way.</p>
+    </div>
+    <ol class="worlds" data-reveal>
+      <li class="world world-u dark">
+        <div class="art" aria-hidden="true"><div class="frame tilt-l"><div class="mat"><img src="assets/besped-test-start.webp" alt="" width="1280" height="812" loading="lazy"></div></div></div>
+        <span class="helper wc wc-lens" aria-hidden="true"><svg viewBox="0 0 130 140" focusable="false" overflow="visible"><rect x="80" y="84" width="20" height="56" rx="10" transform="rotate(-40 90 112)" fill="#D83995"/><circle cx="56" cy="56" r="46" fill="#09318D"/><circle cx="56" cy="56" r="35" fill="#DDF3FB"/><circle class="eye-w" cx="56" cy="54" r="17" fill="#fff"/><circle class="pupil" cx="56" cy="54" r="8" fill="#09318D"/><path d="M44 76 Q56 84 68 76" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg></span><div class="hd"><span class="num num--u">1</span><h3>Understand</h3></div>
+        <p class="what">The SICA test</p>
+        <p>A 60 to 75 minute test of how your child learns, thinks and feels, and of their school subjects, set to their board and age.</p>
+        <a class="btn btn--secondary btn--sm" href="#understand">How the test works</a>
+      </li>
+      <li class="world world-l">
+        <div class="art" aria-hidden="true">
+          <div class="frame b1 tilt-l"><div class="mat"><img src="assets/critical-thinking-book-01.webp" alt="" width="1001" height="1200" loading="lazy"></div></div>
+          <div class="frame b2 tilt-r"><div class="mat"><img src="assets/math-masters-book-level-1-to-3-01.webp" alt="" width="1200" height="1200" loading="lazy"></div></div>
+        </div>
+        <span class="helper wc wc-pencil" aria-hidden="true"><svg viewBox="0 0 90 200" focusable="false" overflow="visible"><path d="M16 96 C 2 86, -4 70, 4 60" fill="none" stroke="#09318D" stroke-width="5" stroke-linecap="round"/><path d="M74 96 C 88 86, 94 70, 86 60" fill="none" stroke="#09318D" stroke-width="5" stroke-linecap="round"/><rect x="18" y="10" width="54" height="26" rx="10" fill="#D83995"/><rect x="18" y="32" width="54" height="12" fill="#9DB7FF"/><rect x="18" y="42" width="54" height="104" fill="#FD91CC"/><rect x="36" y="42" width="18" height="104" fill="#FFB8DD"/><path d="M18 146 L45 192 L72 146z" fill="#F7D9C8"/><path d="M37 178 L45 192 L53 178z" fill="#09318D"/><circle class="eye-w" cx="34" cy="80" r="7" fill="#fff"/><circle class="pupil" cx="34" cy="80" r="3.4" fill="#09318D"/><circle class="eye-w" cx="56" cy="80" r="7" fill="#fff"/><circle class="pupil" cx="56" cy="80" r="3.4" fill="#09318D"/><path d="M36 102 Q45 112 54 102" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg></span><div class="hd"><span class="num num--l">2</span><h3>Learn</h3></div>
+        <p class="what">Books and Skill Boxes</p>
+        <p>Self-Directed Learning Books and Skill Boxes explain each concept, so children can work through a topic on their own.</p>
+        <a class="btn btn--secondary btn--sm" href="#learn">See the books in use</a>
+      </li>
+      <li class="world world-a">
+        <div class="art" aria-hidden="true"><div class="frame tilt-r"><div class="mat"><img src="assets/apply-circuit-project.webp" alt="" width="1000" height="1000" loading="lazy"></div></div></div>
+        <span class="helper wc wc-gear" aria-hidden="true"><svg viewBox="0 0 120 120" focusable="false" overflow="visible"><g class="cog"><path d="M53 6h14l3 13 10 4 11-8 10 10-8 11 4 10 13 3v14l-13 3-4 10 8 11-10 10-11-8-10 4-3 13H53l-3-13-10-4-11 8-10-10 8-11-4-10-13-3V53l13-3 4-10-8-11 10-10 11 8 10-4z" fill="#3366FF"/></g><circle cx="60" cy="60" r="30" fill="#EEF2FF"/><circle class="eye-w" cx="50" cy="56" r="7" fill="#fff"/><circle class="pupil" cx="50" cy="56" r="3.4" fill="#09318D"/><circle class="eye-w" cx="70" cy="56" r="7" fill="#fff"/><circle class="pupil" cx="70" cy="56" r="3.4" fill="#09318D"/><path d="M50 72 Q60 80 70 72" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg></span><div class="hd"><span class="num num--a">3</span><h3>Apply</h3></div>
+        <p class="what">Projects and robotics kits</p>
+        <p>Practical projects children build themselves with robotics kits, with tips at each step, so they use what they have learned.</p>
+        <a class="btn btn--secondary btn--sm" href="#apply">Read it. Get it. Build it.</a>
+      </li>
+    </ol>
+    <div class="aura-strip" data-reveal>
+      <span class="num num--aura" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="8.5" y="2.5" width="7" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      <div><h3>Aura, the AI voice tutor</h3><p>In LearningSpace, children can ask Aura about what they are learning, by typing or by voice.</p></div>
+      <a class="btn btn--secondary btn--sm" href="#aura">Meet Aura</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 3 UNDERSTAND (navy) ========== -->
+<section class="chapter u dark" id="understand" aria-labelledby="u-h">
+  <aside class="dn" data-n="4"><b>Two SICA sections became one.</b> The brain map and the 7 steps share this navy band. The gradient, blur blobs and soft shadow are gone; the steps are a compact list. The LearningSpace tour moved here from Aura, because it shows the test list. <span class="need">Content needed from EduNique: SICA price and age range (not shown, not invented).</span></aside>
+  <div class="wrap">
+    <div class="chap-head">
+      <p class="tag"><span class="num num--u">1</span><span><b>Understand</b><span class="t">The SICA test</span></span></p>
+      <a class="link" href="#aura"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8.5" y="2.5" width="7" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ask Aura</a>
+    </div>
+    <div class="split">
+      <div class="stack">
+        <h2 id="u-h">First, find out how your child learns</h2>
+        <p class="lead">The SICA test (Cognitive &amp; Intelligence Skill Test) takes 60 to 75 minutes in LearningSpace. It gives you a complete picture of who your child is: their intelligence, brain function, foundation strengths and academic gaps, along with their personality traits.</p>
+        <p class="measure">Generative AI and adaptive learning then help your child grow in every part of their education, through books, Skill Boxes and other tools.</p>
+        <div><a class="btn btn--primary" href="https://learningspace.edunique.in/">Take the SICA test</a></div>
+      </div>
+      <div class="map" aria-label="What the SICA test covers" role="group">
+        <svg class="head" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><path class="outline" pathLength="1" d="M128 178v-26c18-6 30-20 30-38l14-6-12-22c4-40-24-70-62-70-36 0-64 28-64 64 0 22 10 38 26 48v50"/><path class="dots" pathLength="1" d="M72 70c10-14 34-14 42 2M88 100c12 6 26 2 32-10M66 104c-4 10 0 22 12 26"/></svg>
+        <span class="helper map-lens" aria-hidden="true"><svg viewBox="0 0 130 140" focusable="false" overflow="visible"><rect x="80" y="84" width="20" height="56" rx="10" transform="rotate(-40 90 112)" fill="#D83995"/><circle cx="56" cy="56" r="46" fill="#09318D"/><circle cx="56" cy="56" r="35" fill="#DDF3FB"/><circle class="eye-w" cx="56" cy="54" r="17" fill="#fff"/><circle class="pupil" cx="56" cy="54" r="8" fill="#09318D"/><path d="M44 76 Q56 84 68 76" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg></span>
+        <div class="g g1"><p>How they learn</p><ul><li>Learning Style</li><li>Personality Type</li></ul></div>
+        <div class="g g2"><p>How they think and feel</p><ul><li>Critical Thinking</li><li>Emotional Intelligence</li></ul></div>
+        <div class="g g3"><p>What it finds</p><ul><li>Foundation strengths</li><li>Academic gaps</li></ul></div>
+        <div class="g g4"><p>Who they are</p><ul><li>Brain function</li><li>Personality traits</li></ul></div>
+        <div class="g g5"><p>School subjects</p><ul><li>Math Academic</li><li>English Academic</li><li>Hindi Advanced</li><li>Environment Quiz</li><li>Robotics Basic</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="sica-show" aria-roledescription="carousel" aria-label="The SICA test, step by step">
+    <figure class="slide is-on" role="group" aria-roledescription="slide" aria-label="1 of 7: Choose the skills and subjects" data-title="Choose the skills and subjects" data-text="Pick the skills and school subjects to work on. LearningSpace lists the tests for your child’s board and age.">
+      <img class="bg" src="assets/besped-step-choose-2x.webp" alt="" width="1400" height="876" loading="lazy" aria-hidden="true">
+      <div class="shot-wrap"><img class="shot" src="assets/besped-step-choose-2x.webp" alt="The SICA test list in LearningSpace for CBSE, age 10: Personality Type, Robotics Basic, Hindi Advanced, Critical Thinking, Learning Style, Emotional Intelligence, English Academic, Math Academic and Environment Quiz." width="1400" height="876" loading="lazy"></div>
+    </figure>
+    <figure class="slide" role="group" aria-roledescription="slide" aria-label="2 of 7: Begin the test" data-title="Begin the test" data-text="The test takes at least 60 minutes. The start screen shows the number of questions, the marks and the time.">
+      <img class="bg" src="assets/besped-step-start-2x.webp" alt="" width="1600" height="1016" loading="lazy" aria-hidden="true">
+      <div class="shot-wrap"><img class="shot" src="assets/besped-step-start-2x.webp" alt="The SICA test start screen in LearningSpace, showing the number of questions, the marks and the time." width="1600" height="1016" loading="lazy"></div>
+    </figure>
+    <figure class="slide" role="group" aria-roledescription="slide" aria-label="3 of 7: SICA AI test report" data-title="SICA AI test report" data-text="After the test, LearningSpace prepares an AI-powered report on your child’s results.">
+      <img class="bg" src="assets/besped-report-aireport.webp" alt="" width="1400" height="468" loading="lazy" aria-hidden="true">
+      <div class="shot-wrap"><img class="shot" src="assets/besped-report-aireport.webp" alt="The AI-Powered Learning Report card in LearningSpace, with its Generate Detailed Report button." width="1400" height="468" loading="lazy"></div>
+    </figure>
+    <figure class="slide" role="group" aria-roledescription="slide" aria-label="4 of 7: A plan with the right tools" data-title="A plan with the right tools" data-text="From the report, the platform creates a plan for your child, with the right tools for each skill.">
+      <img class="bg" src="assets/besped-report-skills.webp" alt="" width="872" height="1140" loading="lazy" aria-hidden="true">
+      <div class="shot-wrap"><img class="shot" src="assets/besped-report-skills.webp" alt="Skill Analysis in a SICA report: an overall skill score across the skills assessed." width="872" height="1140" loading="lazy"></div>
+    </figure>
+    <figure class="slide" role="group" aria-roledescription="slide" aria-label="5 of 7: Activities for brain function" data-title="Activities for brain function" data-text="It maps the right activities and content to strengthen each brain function, from planning and reasoning to memory.">
+      <img class="bg" src="assets/besped-report-brain.webp" alt="" width="1400" height="830" loading="lazy" aria-hidden="true">
+      <div class="shot-wrap"><img class="shot" src="assets/besped-report-brain.webp" alt="Brain Mapping in a SICA report: a score for each brain region." width="1400" height="830" loading="lazy"></div>
+    </figure>
+    <figure class="slide" role="group" aria-roledescription="slide" aria-label="6 of 7: Every concept, big and small" data-title="Every concept, big and small" data-text="Adaptive learning covers the macro and micro concepts, starting with the ones your child needs to practise.">
+      <img class="bg" src="assets/besped-report-concepts.webp" alt="" width="1400" height="812" loading="lazy" aria-hidden="true">
+      <div class="shot-wrap"><img class="shot" src="assets/besped-report-concepts.webp" alt="Concept Mastery in a SICA report: a list of strengths beside the concepts to practise." width="1400" height="812" loading="lazy"></div>
+    </figure>
+    <figure class="slide" role="group" aria-roledescription="slide" aria-label="7 of 7: Progress at every step" data-title="Progress at every step" data-text="A progress chart tracks every step, so you can see how your child improves between attempts.">
+      <img class="bg" src="assets/besped-report-trend.webp" alt="" width="1400" height="724" loading="lazy" aria-hidden="true">
+      <div class="shot-wrap"><img class="shot" src="assets/besped-report-trend.webp" alt="Improvement Trend in a SICA report: a line chart of test scores over the months." width="1400" height="724" loading="lazy"></div>
+    </figure>
+    <div class="show-cap">
+      <div class="show-bars"><button type="button" class="bar" aria-label="Show step 1"><i></i></button><button type="button" class="bar" aria-label="Show step 2"><i></i></button><button type="button" class="bar" aria-label="Show step 3"><i></i></button><button type="button" class="bar" aria-label="Show step 4"><i></i></button><button type="button" class="bar" aria-label="Show step 5"><i></i></button><button type="button" class="bar" aria-label="Show step 6"><i></i></button><button type="button" class="bar" aria-label="Show step 7"><i></i></button></div>
+      <span class="num num--u show-n" aria-hidden="true">1</span>
+      <div class="show-text" aria-live="polite">
+        <p class="show-label">The SICA test, step by step <span class="show-count">· 1 of 7</span></p>
+        <h3 class="show-title">Choose the skills and subjects</h3>
+        <p class="show-desc">Pick the skills and school subjects to work on. LearningSpace lists the tests for your child’s board and age.</p>
+      </div>
+      <div class="show-ctl">
+        <button type="button" class="ctl prev" aria-label="Previous step"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="ctl play" aria-label="Pause the slides" aria-pressed="false"><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14M16 5v14"/></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 5l12 7-12 7z"/></svg></button>
+        <button type="button" class="ctl next" aria-label="Next step"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="handoff" aria-label="Next chapter">
+  <aside class="dn" data-n="5"><b>The helper's one job: point to the next step.</b> The white strip also keeps every blue field from touching a pink one (blue and pink at equal lightness vibrate, 1.32:1).</aside>
+  <div class="wrap">
+    <span class="helper lens" aria-hidden="true" style="width:86px"><svg viewBox="0 0 130 140" focusable="false" overflow="visible"><rect x="80" y="84" width="20" height="56" rx="10" transform="rotate(-40 90 112)" fill="#D83995"/><circle cx="56" cy="56" r="46" fill="#09318D"/><circle cx="56" cy="56" r="35" fill="#DDF3FB"/><circle class="eye-w" cx="56" cy="54" r="17" fill="#fff"/><circle class="pupil" cx="62" cy="58" r="8" fill="#09318D"/><path d="M44 76 Q56 84 68 76" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg></span>
+    <a class="bubble-link" href="#learn"><span class="num num--l" aria-hidden="true">2</span><span><small>Next</small><strong>Learn: books and Skill Boxes</strong></span><svg class="down" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v15M5 12l7 7 7-7"/></svg></a>
+  </div>
+</div>
+
+<!-- ========== 4 LEARN (pale sky) ========== -->
+<section class="chapter l" id="learn" aria-labelledby="l-h">
+  <aside class="dn" data-n="6"><b>Learn gets its own band.</b> "See the books in use" is now an H2 with its build-note eyebrow removed, and the Skill Box video moved here from the trust section. Taped clip = the one video frame; tilt only on real objects.</aside>
+  <div class="wrap">
+    <div class="chap-head">
+      <p class="tag"><span class="num num--l">2</span><span><b>Learn</b><span class="t">Books and Skill Boxes</span></span></p>
+      <a class="link" href="#aura"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8.5" y="2.5" width="7" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ask Aura</a>
+    </div>
+    <div class="split split--top">
+      <div>
+        <div class="stack">
+          <h2 id="l-h">See the books in use<svg class="scribble" viewBox="0 0 300 22" aria-hidden="true" focusable="false"><path pathLength="1" d="M4 14 C 40 3, 72 21, 110 11 S 182 3, 222 13 S 282 19, 296 8"/></svg></h2>
+          <p class="lead">Self-Directed Learning Books and Skill Boxes explain each concept, so children can work through a topic on their own.</p>
+          <p>A short video from EduNique about its Self-Directed Learning Books.</p>
+          <p><a class="link" href="#shop">See the Self-Directed Learning Books</a></p>
+        </div>
+        <div class="sub">
+          <div class="sub-grid">
+            <img src="assets/skill-box-5-6-open.webp" alt="" width="837" height="900" loading="lazy">
+            <div class="stack-s">
+              <h3>Skill Boxes</h3>
+              <p>A planned set of books and activities for one age band, with a curriculum you can read first.</p>
+              <ul class="chips"><li class="chip">Ages 2 to 10, in four age bands</li><li class="chip">From ₹3,599</li></ul>
+              <p style="padding-top:8px"><a class="link" href="#shop">See all Skill Boxes</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clips">
+        <figure class="frame frame--tape tilt-l" data-reveal>
+          <div class="mat"><video controls playsinline preload="none" poster="assets/books-poster.jpg" width="576" height="1024"><source src="assets/books.mp4" type="video/mp4"></video></div>
+          <figcaption>EduNique books video</figcaption>
+        </figure>
+        <figure class="frame frame--tape tilt-r" data-reveal>
+          <div class="mat"><video controls playsinline preload="none" poster="assets/skill-box-poster.jpg" width="720" height="1280"><source src="assets/skill-box.mp4" type="video/mp4"></video></div>
+          <figcaption>What comes in a Skill Box, in EduNique’s own video</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="handoff" aria-label="Next chapter">
+  <div class="wrap">
+    <span class="helper pencil" aria-hidden="true"><svg viewBox="0 0 90 200" focusable="false" overflow="visible"><path d="M16 96 C 2 86, -4 70, 4 60" fill="none" stroke="#09318D" stroke-width="5" stroke-linecap="round"/><path d="M74 96 C 92 96, 104 104, 112 112" fill="none" stroke="#09318D" stroke-width="5" stroke-linecap="round"/><rect x="18" y="10" width="54" height="26" rx="10" fill="#D83995"/><rect x="18" y="32" width="54" height="12" fill="#9DB7FF"/><rect x="18" y="42" width="54" height="104" fill="#FD91CC"/><rect x="36" y="42" width="18" height="104" fill="#FFB8DD"/><path d="M18 146 L45 192 L72 146z" fill="#F7D9C8"/><path d="M37 178 L45 192 L53 178z" fill="#09318D"/><circle class="eye-w" cx="34" cy="80" r="7" fill="#fff"/><circle class="pupil" cx="37" cy="81" r="3.4" fill="#09318D"/><circle class="eye-w" cx="56" cy="80" r="7" fill="#fff"/><circle class="pupil" cx="59" cy="81" r="3.4" fill="#09318D"/><path d="M36 102 Q45 112 54 102" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg></span>
+    <a class="bubble-link" href="#apply"><span class="num num--a" aria-hidden="true">3</span><span><small>Next</small><strong>Apply: projects and robotics kits</strong></span><svg class="down" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v15M5 12l7 7 7-7"/></svg></a>
+  </div>
+</div>
+
+<!-- ========== 5 APPLY (pale bubble, graph paper) ========== -->
+<section class="chapter a" id="apply" aria-labelledby="a-h">
+  <aside class="dn" data-n="7"><b>The one scene that explains something.</b> "Read it. Get it. Build it." stays: the book turns into the kit along a drawn path. Its steps use the same numbered chip as everything else. Apply keeps the approved pale bubble field.</aside>
+  <div class="wrap">
+    <div class="chap-head">
+      <p class="tag"><span class="num num--a">3</span><span><b>Apply</b><span class="t">Projects and robotics kits</span></span></p>
+      <a class="link" href="#aura"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8.5" y="2.5" width="7" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ask Aura</a>
+    </div>
+    <div class="split">
+      <div class="stack">
+        <h2 id="a-h">Read it. Get it. Build it.</h2>
+        <p class="lead">Practical projects children build themselves with robotics kits, with tips at each step, so they use what they have learned.</p>
+        <ol class="apply-steps">
+          <li><span class="num num--a">1</span><span><b>Read</b>how a circuit works</span></li>
+          <li><span class="num num--a">2</span><span><b>Understand</b>each part’s job</span></li>
+          <li><span class="num num--a">3</span><span><b>Create</b>a circuit that lights up</span></li>
+        </ol>
+        <p class="idea">The idea on the page becomes the thing in their hands.</p>
+                <p><a class="link" href="#shop">Shop projects and kits</a></p>
+      </div>
+      <div class="scene">
+        <svg class="build" viewBox="0 0 640 520" role="img" aria-labelledby="build-t">
+          <title id="build-t">Illustration: a child builds a robot from a kit, following a plan. When the wire is connected, the robot lights up and waves.</title>
+          <g id="kid">
+            <circle cx="430" cy="212" r="10" fill="#C98C62" stroke="#09318D" stroke-width="4"/><circle cx="530" cy="212" r="10" fill="#C98C62" stroke="#09318D" stroke-width="4"/>
+            <rect x="468" y="244" width="24" height="30" fill="#C98C62" stroke="#09318D" stroke-width="4"/>
+            <path d="M404 380 C404 300 428 268 480 268 C532 268 556 300 556 380 Z" fill="#3366FF" stroke="#09318D" stroke-width="4"/>
+            <path d="M462 272 Q480 290 498 272" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+            <g id="kidHead">
+              <circle cx="480" cy="206" r="50" fill="#C98C62" stroke="#09318D" stroke-width="4"/>
+              <path d="M430 206 C426 162 452 146 482 146 C514 146 538 164 532 204 C520 184 500 176 484 180 C466 176 446 186 430 206 Z" fill="#10204F" stroke="#09318D" stroke-width="4" stroke-linejoin="round"/>
+              <ellipse class="kid-eye" cx="462" cy="212" rx="6" ry="7" fill="#10204F"/><ellipse class="kid-eye" cx="496" cy="212" rx="6" ry="7" fill="#10204F"/>
+              <circle cx="449" cy="230" r="8" fill="#FD91CC" opacity=".75"/><circle cx="511" cy="230" r="8" fill="#FD91CC" opacity=".75"/>
+              <path class="kid-smile" d="M468 234 Q480 246 494 234" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/>
+              <ellipse class="kid-wow" cx="481" cy="240" rx="8" ry="10" fill="#A0236B" stroke="#09318D" stroke-width="3" opacity="0"/>
+            </g>
+            <g id="armL"><path d="M420 302 C392 324 362 344 332 356" fill="none" stroke="#09318D" stroke-width="32" stroke-linecap="round"/><path d="M420 302 C392 324 362 344 332 356" fill="none" stroke="#3366FF" stroke-width="24" stroke-linecap="round"/><circle cx="326" cy="357" r="14" fill="#C98C62" stroke="#09318D" stroke-width="4"/></g>
+            <g id="armR"><path d="M540 302 C560 324 566 342 562 358" fill="none" stroke="#09318D" stroke-width="32" stroke-linecap="round"/><path d="M540 302 C560 324 566 342 562 358" fill="none" stroke="#3366FF" stroke-width="24" stroke-linecap="round"/><circle cx="562" cy="360" r="14" fill="#C98C62" stroke="#09318D" stroke-width="4"/></g>
+          </g>
+          <g id="bp">
+            <rect x="40" y="206" width="124" height="150" rx="14" fill="#fff" stroke="#09318D" stroke-width="4"/>
+            <path d="M58 228h72M58 243h50" stroke="#9DB7FF" stroke-width="6" stroke-linecap="round"/>
+            <path class="sketch" pathLength="1" d="M80 262h46v32h-46zM74 300h58v38h-58zM103 262v-12M84 346a6 6 0 1 0 12 0a6 6 0 1 0 -12 0M112 346a6 6 0 1 0 12 0a6 6 0 1 0 -12 0" fill="none" stroke="#3366FF" stroke-width="3" stroke-linejoin="round"/>
+          </g>
+          <rect x="56" y="392" width="528" height="116" rx="20" fill="#FD91CC" stroke="#09318D" stroke-width="4"/>
+          <rect x="290" y="426" width="60" height="12" rx="6" fill="#fff" stroke="#09318D" stroke-width="3"/>
+          <rect x="24" y="372" width="592" height="24" rx="12" fill="#09318D"/>
+          <rect x="24" y="364" width="592" height="24" rx="12" fill="#fff" stroke="#09318D" stroke-width="4"/>
+          <g id="batt">
+            <rect x="70" y="314" width="78" height="50" rx="10" fill="#9DB7FF" stroke="#09318D" stroke-width="4"/>
+            <rect x="148" y="330" width="8" height="18" rx="3" fill="#09318D"/>
+            <path d="M98 339h16M106 331v16" stroke="#09318D" stroke-width="4" stroke-linecap="round"/>
+            <rect x="84" y="300" width="38" height="14" rx="7" fill="#fff" stroke="#09318D" stroke-width="3"/>
+            <circle id="knob" cx="92" cy="307" r="6" fill="#A0236B"/>
+          </g>
+          <path id="wire" pathLength="1" d="M156 339 C176 339 166 300 180 296" fill="none" stroke="#D83995" stroke-width="6" stroke-linecap="round"/>
+          <g id="bot">
+            <g id="wheelL"><circle cx="204" cy="342" r="21" fill="#09318D"/><circle cx="204" cy="342" r="8" fill="#DDF3FB"/><path d="M204 324v8" stroke="#DDF3FB" stroke-width="4" stroke-linecap="round"/></g>
+            <g id="wheelR"><circle cx="268" cy="342" r="21" fill="#09318D"/><circle cx="268" cy="342" r="8" fill="#DDF3FB"/><path d="M268 324v8" stroke="#DDF3FB" stroke-width="4" stroke-linecap="round"/></g>
+            <g id="botArmL"><rect x="150" y="262" width="26" height="58" rx="13" fill="#DDF3FB" stroke="#09318D" stroke-width="4"/></g>
+            <g id="botArmR"><rect x="296" y="262" width="26" height="58" rx="13" fill="#DDF3FB" stroke="#09318D" stroke-width="4"/></g>
+            <g id="botBody">
+              <rect x="178" y="252" width="116" height="84" rx="18" fill="#0593C6" stroke="#09318D" stroke-width="4"/>
+              <rect x="205" y="270" width="62" height="34" rx="10" fill="#DDF3FB" stroke="#09318D" stroke-width="3"/>
+              <circle class="led" cx="221" cy="287" r="5" fill="#fff" stroke="#09318D" stroke-width="2"/><circle class="led" cx="236" cy="287" r="5" fill="#fff" stroke="#09318D" stroke-width="2"/><circle class="led" cx="251" cy="287" r="5" fill="#fff" stroke="#09318D" stroke-width="2"/>
+            </g>
+            <g id="botHead">
+              <rect x="227" y="238" width="18" height="18" fill="#09318D"/>
+              <rect x="191" y="174" width="90" height="66" rx="20" fill="#fff" stroke="#09318D" stroke-width="4"/>
+              <circle class="eye-ring" cx="218" cy="205" r="16" fill="none" stroke="#9DB7FF" stroke-width="4" opacity="0"/><circle class="eye-ring" cx="254" cy="205" r="16" fill="none" stroke="#9DB7FF" stroke-width="4" opacity="0"/>
+              <circle class="bot-eye" cx="218" cy="205" r="10" fill="#09318D"/><circle class="bot-eye" cx="254" cy="205" r="10" fill="#09318D"/>
+              <path d="M223 223 Q236 231 249 223" fill="none" stroke="#09318D" stroke-width="3" stroke-linecap="round"/>
+              <g id="antenna"><path d="M236 174v-26" stroke="#09318D" stroke-width="4" stroke-linecap="round"/><circle class="ant-ring" cx="236" cy="142" r="18" fill="none" stroke="#FF3366" stroke-width="3" opacity="0"/><circle class="ant" cx="236" cy="142" r="9" fill="#FF3366" stroke="#09318D" stroke-width="3"/></g>
+            </g>
+          </g>
+          <g id="sparks">
+            <path class="spark" d="M236 70l5 12 12 5-12 5-5 12-5-12-12-5 12-5z" fill="#FF3366"/>
+            <path class="spark" d="M150 120l4 9 9 4-9 4-4 9-4-9-9-4 9-4z" fill="#0593C6"/>
+            <path class="spark" d="M322 116l4 9 9 4-9 4-4 9-4-9-9-4 9-4z" fill="#D83995"/>
+            <circle class="spark" cx="128" cy="196" r="7" fill="#9DB7FF"/><circle class="spark" cx="346" cy="190" r="7" fill="#FD91CC"/>
+            <circle class="spark" cx="176" cy="92" r="5" fill="#3366FF"/><circle class="spark" cx="300" cy="84" r="5" fill="#0593C6"/>
+          </g>
+          <svg id="gearHelper" x="552" y="22" width="76" height="76" viewBox="0 0 120 120" overflow="visible"><g class="cog"><path d="M53 6h14l3 13 10 4 11-8 10 10-8 11 4 10 13 3v14l-13 3-4 10 8 11-10 10-11-8-10 4-3 13H53l-3-13-10-4-11 8-10-10 8-11-4-10-13-3V53l13-3 4-10-8-11 10-10 11 8 10-4z" fill="#3366FF"/></g><circle cx="60" cy="60" r="30" fill="#EEF2FF"/><circle class="eye-w" cx="50" cy="56" r="7" fill="#fff"/><circle class="pupil" cx="50" cy="56" r="3.4" fill="#09318D"/><circle class="eye-w" cx="70" cy="56" r="7" fill="#fff"/><circle class="pupil" cx="70" cy="56" r="3.4" fill="#09318D"/><path d="M50 72 Q60 80 70 72" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="handoff" aria-label="Next chapter">
+  <div class="wrap">
+    <span class="helper gear" aria-hidden="true" style="width:86px"><svg viewBox="0 0 120 120" focusable="false" overflow="visible"><path d="M53 6h14l3 13 10 4 11-8 10 10-8 11 4 10 13 3v14l-13 3-4 10 8 11-10 10-11-8-10 4-3 13H53l-3-13-10-4-11 8-10-10 8-11-4-10-13-3V53l13-3 4-10-8-11 10-10 11 8 10-4z" fill="#3366FF"/><circle cx="60" cy="60" r="30" fill="#EEF2FF"/><circle class="eye-w" cx="50" cy="56" r="7" fill="#fff"/><circle class="pupil" cx="53" cy="57" r="3.4" fill="#09318D"/><circle class="eye-w" cx="70" cy="56" r="7" fill="#fff"/><circle class="pupil" cx="73" cy="57" r="3.4" fill="#09318D"/><path d="M50 72 Q60 80 70 72" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg></span>
+    <a class="bubble-link" href="#aura"><span class="num num--aura" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="8.5" y="2.5" width="7" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span><small>Along the way</small><strong>Aura, the AI voice tutor</strong></span><svg class="down" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v15M5 12l7 7 7-7"/></svg></a>
+  </div>
+</div>
+
+<!-- ========== 6 AURA (periwinkle) ========== -->
+<section class="aura" id="aura" aria-labelledby="aura-h">
+  <aside class="dn" data-n="8"><b>Aura is the guide, not a fourth product.</b> The band shows only the real chat. An "Ask Aura" link sits in every chapter head, so the guide travels with the parent through all three steps.</aside>
+  <div class="wrap split">
+    <div class="stack">
+      <p class="aura-mark"><span class="num num--aura" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="8.5" y="2.5" width="7" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>Aura, the AI voice tutor</p>
+      <h2 id="aura-h">Ask Aura. Out loud.</h2>
+      <p class="lead">Aura is the AI voice tutor in LearningSpace. Children can type a question, or switch to Voice and ask about their studies by speaking. LearningSpace also has practice papers and the SICA test.</p>
+      <div><a class="btn btn--secondary" href="https://learningspace.edunique.in/">Open LearningSpace</a></div>
+    </div>
+    <figure class="frame frame--tape tilt-r" data-reveal>
+      <div class="mat"><img src="assets/aura-real-conversation.webp" alt="Aura AI in LearningSpace, in Chat mode. A student asks: Why is 1/4 smaller than 1/2? 4 is bigger than 2. Aura answers that fractions are parts of a whole, explains that 1/4 means the whole is divided into 4 equal parts and 1/2 into 2, and uses a pizza cut into 4 or 2 equal slices to show that 1/4 is the smaller part." width="955" height="400" loading="lazy"></div>
+      <figcaption>A conversation with Aura in LearningSpace.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ========== 7 FOUNDER ========== -->
+<section class="founder" id="founder" aria-labelledby="f-h">
+  <aside class="dn" data-n="9"><b>Founder after the plan.</b> The guide's empathy moment, set as a plain pull quote so it never competes with the hero. No empty half: the band is text only. <span class="need">Content needed from EduNique: Akanksha's photo (not shown until supplied).</span></aside>
+  <div class="wrap founder-grid">
+    <div>
+      <svg class="qmark" viewBox="0 0 72 56" aria-hidden="true" focusable="false"><path d="M0 56V32C0 14 10 3 28 0l3 8C20 12 15 19 15 28h14v28zm41 0V32C41 14 51 3 69 0l3 8C61 12 56 19 56 28h14v28z"/></svg>
+      <h2 id="f-h">I was never a topper. But I was never an average child.</h2>
+    </div>
+    <div class="stack">
+      <p class="said">“How could I be average in a classroom and extraordinary outside it?”</p>
+      <p class="measure">Akanksha struggled to understand concepts, to stay interested, and to apply what she learned. Read how that question led her and her mother to start EduNique.</p>
+      <div><a class="btn btn--secondary" href="https://skillioner-new.local/about-us/">Read Akanksha’s story</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 8 SHOP ========== -->
+<section class="shop" id="shop" aria-labelledby="shop-h">
+  <aside class="dn" data-n="10"><b>One product card everywhere.</b> Tilted card, swing-tag price, wavy "View product" link. Tabs and panels wear the pillar colour: Skill Boxes and books = Learn (sky), robotics kits = Apply (bubble). Try "Add to cart": the springy pop is used only when something is added.</aside>
+  <div class="wrap">
+    <div class="shop-head">
+      <h2 id="shop-h">Shop the EduNique range</h2>
+      <p class="lead">Self-Directed Learning Books, Skill Boxes and robotics kits. Every product has its own page, with photos, options and prices.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Product families">
+      <button type="button" role="tab" class="tab" data-fam="l" id="t-box" aria-controls="p-box" aria-selected="true"><span>Skill Boxes</span><span class="cnt">4</span><span class="num num--l" aria-hidden="true">2</span></button>
+      <button type="button" role="tab" class="tab" data-fam="l" id="t-book" aria-controls="p-book" aria-selected="false" tabindex="-1"><span>Self-Directed Learning Books</span><span class="cnt">44</span><span class="num num--l" aria-hidden="true">2</span></button>
+      <button type="button" role="tab" class="tab" data-fam="a" id="t-kit" aria-controls="p-kit" aria-selected="false" tabindex="-1"><span>Robotics Kits</span><span class="cnt">8</span><span class="num num--a" aria-hidden="true">3</span></button>
+    </div>
+
+    <div class="panel" data-fam="l" id="p-box" role="tabpanel" aria-labelledby="t-box" tabindex="0">
+      <div class="panel-head">
+        <h3>Skill Boxes</h3>
+        <p>A planned set of books and activities for one age band, with a curriculum you can read first.</p>
+        <a class="link" href="https://skillioner-new.local/product-category/skill-box/">See all Skill Boxes</a>
+        <ul class="chips"><li class="chip">Ages 2 to 10, in four age bands</li><li class="chip">From ₹3,599</li></ul>
+      </div>
+      <ul class="pgrid">
+        <li class="pc"><div class="art"><img src="assets/skill-box-2-4-years-01.webp" alt="Skill Box, ages 2 to 4: open, showing its books, flash cards and stickers" width="1014" height="1014" loading="lazy"><span class="price"><b>₹3,599</b></span></div><div class="body"><p class="name">Skill Box (2 – 4 Years)</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/skill-box-2-4-years/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Skill Box (2 – 4 Years)">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/skill-box-5-6-years-01.webp" alt="Skill Box, ages 5 to 6: open, showing its books, flash cards and stickers" width="1014" height="1014" loading="lazy"><span class="price"><b>₹4,799</b></span></div><div class="body"><p class="name">Skill Box (5 – 6 Years)</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/skill-box-5-6-years/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Skill Box (5 – 6 Years)">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/skill-box-7-8-years-01.webp" alt="Skill Box, ages 7 to 8: open, showing its books, flash cards and stickers" width="1014" height="1014" loading="lazy"><span class="price"><b>₹5,999</b></span></div><div class="body"><p class="name">Skill Box (7-8 Years)</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/skill-box-7-8-years/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Skill Box (7-8 Years)">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/skill-box-9-10-years-01.webp" alt="Skill Box, ages 9 to 10: open, showing its books, flash cards and stickers" width="1014" height="1014" loading="lazy"><span class="price"><b>₹7,099</b></span></div><div class="body"><p class="name">Skill Box (9-10 Years)</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/skill-box-9-10-years/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Skill Box (9-10 Years)">Add to cart</button></div></div></li>
+      </ul>
+    </div>
+
+    <div class="panel" data-fam="l" id="p-book" role="tabpanel" aria-labelledby="t-book" tabindex="0" hidden>
+      <div class="panel-head">
+        <h3>Self-Directed Learning Books</h3>
+        <p>Self-directed practice books for handwriting, phonics, maths, science and thinking skills.</p>
+        <a class="link" href="https://skillioner-new.local/product-category/books/">See all Self-Directed Learning Books</a>
+        <ul class="chips"><li class="chip">From ₹349</li></ul>
+      </div>
+      <ul class="pgrid">
+        <li class="pc"><div class="art"><img src="assets/phonics-book-case-6-levels-01.webp" alt="Phonics book case, 6 levels cover" width="1200" height="1200" loading="lazy"><span class="price">From <b>₹3,199</b></span></div><div class="body"><p class="name">Phonics Book case (6 levels)</p><p class="meta">Nursery – LKG (3-4 years)</p><p class="desc">Reading doesn’t click until phonics does.</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/phonics-book-case-6-levels/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Phonics Book case (6 levels)">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/critical-thinking-book-01.webp" alt="Critical Thinking Book cover" width="1001" height="1200" loading="lazy"><span class="price">From <b>₹1,899</b></span></div><div class="body"><p class="name">Critical Thinking Book</p><p class="meta">Class 3-4 (8-9 years)</p><p class="desc">Most books teach your child what to think.</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/critical-thinking-book/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Critical Thinking Book">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/math-masters-book-level-1-to-3-01.webp" alt="Math Masters, levels 1 to 3 cover" width="1200" height="1200" loading="lazy"><span class="price">From <b>₹2,699</b></span></div><div class="body"><p class="name">Math Masters book level 1 to 3</p><p class="meta">Class 3-4 (8-9 years)</p><p class="desc">Most maths books test what your child already knows.</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/math-masters-book-level-1-to-3/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Math Masters book level 1 to 3">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/spelling-practice-refresher-01.webp" alt="Spelling Practice Refresher cover" width="1200" height="1200" loading="lazy"><span class="price"><b>₹899</b></span></div><div class="body"><p class="name">Spelling Practice Refresher</p><p class="meta">Class 1-2 (6-7 years)</p><p class="desc">The Spelling Practice Refresher helps children aged 6–7 years build strong spelling, phonics and vocabulary skills.</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/spelling-practice-refresher/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Spelling Practice Refresher">Add to cart</button></div></div></li>
+      </ul>
+    </div>
+
+    <div class="panel" data-fam="a" id="p-kit" role="tabpanel" aria-labelledby="t-kit" tabindex="0" hidden>
+      <div class="panel-head">
+        <h3>Robotics Kits</h3>
+        <p>Build and code at home. 15 days of robotics classes free with each purchase.</p>
+        <a class="link" href="https://skillioner-new.local/product-category/stem-robotics/">See all robotics kits</a>
+        <ul class="chips"><li class="chip">From age 6, 8 or 12, by kit</li><li class="chip">From ₹5,899</li></ul>
+      </div>
+      <ul class="pgrid">
+        <li class="pc"><div class="art"><img src="assets/play-mex-01.webp" alt="Play Mex kit parts" width="1000" height="1000" loading="lazy"><span class="price">From <b>₹8,299</b></span></div><div class="body"><p class="name">Play Mex</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/play-mex/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Play Mex">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/play-tronix-01.webp" alt="Play Tronix kit parts" width="1080" height="1010" loading="lazy"><span class="price">From <b>₹11,799</b></span></div><div class="body"><p class="name">Play Tronix</p><p class="desc">Most kits teach electronics as theory.</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/play-tronix/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Play Tronix">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/zing-01.webp" alt="Zing kit parts" width="1000" height="1000" loading="lazy"><span class="price">From <b>₹82,599</b></span></div><div class="body"><p class="name">Zing</p><p class="desc">Most robots stand still and wait for commands.</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/zing/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Zing">Add to cart</button></div></div></li>
+        <li class="pc"><div class="art"><img src="assets/roboki-t1-01.webp" alt="Roboki-t1 kit parts" width="1000" height="1000" loading="lazy"><span class="price">From <b>₹5,899</b></span></div><div class="body"><p class="name">Roboki-t1</p><p class="desc">Most robotic kits give kids a fixed toy.</p><div class="foot"><a class="link" href="https://skillioner-new.local/product/roboki-t1/">View product</a><button type="button" class="btn btn--secondary btn--sm add" data-name="Roboki-t1">Add to cart</button></div></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 9 LOOK INSIDE (pale bubble) ========== -->
+<section class="inside" id="inside" aria-labelledby="in-h">
+  <aside class="dn" data-n="11"><b>Reassurance before the last ask.</b> Parents want to check what they buy and how returns work, so curricula and policies sit together, plain and legible. <span class="need">Content needed from EduNique: real parent reviews (name, city, child's age), sample pages for the books, and what is inside each robotics kit. Nothing is faked here.</span></aside>
+  <div class="wrap split">
+    <div class="stack">
+      <h2 id="in-h">Look inside before you decide</h2>
+      <p class="lead">Read what each Skill Box covers, and how orders, delivery and returns work.</p>
+    </div>
+    <div>
+      <ul class="pdfs" data-reveal>
+        <li><a href="https://skillioner-new.local/wp-content/uploads/edunique/pdf/Catalogue-2-4-Skill-Box.pdf" target="_blank" rel="noopener" type="application/pdf"><svg viewBox="0 0 30 36" aria-hidden="true" focusable="false"><path d="M2 2h18l8 8v24H2z" fill="#FFD6EC" stroke="#09318D" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 2v8h8M8 18h14M8 24h10" fill="none" stroke="#09318D" stroke-width="2.5" stroke-linecap="round"/></svg><span><b>Skill Box, ages 2–4</b><span>Curriculum (PDF)</span></span></a></li>
+        <li><a href="https://skillioner-new.local/wp-content/uploads/edunique/pdf/Catalogue-5-6yrs-Skill-Box.pdf" target="_blank" rel="noopener" type="application/pdf"><svg viewBox="0 0 30 36" aria-hidden="true" focusable="false"><path d="M2 2h18l8 8v24H2z" fill="#FFD6EC" stroke="#09318D" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 2v8h8M8 18h14M8 24h10" fill="none" stroke="#09318D" stroke-width="2.5" stroke-linecap="round"/></svg><span><b>Skill Box, ages 5–6</b><span>Curriculum (PDF)</span></span></a></li>
+        <li><a href="https://skillioner-new.local/wp-content/uploads/edunique/pdf/Catalogue-7-8-yrs-Skill-Box.pdf" target="_blank" rel="noopener" type="application/pdf"><svg viewBox="0 0 30 36" aria-hidden="true" focusable="false"><path d="M2 2h18l8 8v24H2z" fill="#FFD6EC" stroke="#09318D" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 2v8h8M8 18h14M8 24h10" fill="none" stroke="#09318D" stroke-width="2.5" stroke-linecap="round"/></svg><span><b>Skill Box, ages 7–8</b><span>Curriculum (PDF)</span></span></a></li>
+        <li><a href="https://skillioner-new.local/wp-content/uploads/edunique/pdf/Catalogue-9-10-yrs-Skill-Box.pdf" target="_blank" rel="noopener" type="application/pdf"><svg viewBox="0 0 30 36" aria-hidden="true" focusable="false"><path d="M2 2h18l8 8v24H2z" fill="#FFD6EC" stroke="#09318D" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 2v8h8M8 18h14M8 24h10" fill="none" stroke="#09318D" stroke-width="2.5" stroke-linecap="round"/></svg><span><b>Skill Box, ages 9–10</b><span>Curriculum (PDF)</span></span></a></li>
+      </ul>
+      <ul class="policies">
+        <li><a class="link" href="https://skillioner-new.local/shipping-policy/">Shipping policy</a></li>
+        <li><a class="link" href="https://skillioner-new.local/refund-and-return-policy/">Refunds and returns</a></li>
+        <li><a class="link" href="https://skillioner-new.local/contact-us/">Contact EduNique</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 10 FINAL CTA ========== -->
+<section class="final" aria-labelledby="end-h">
+  <aside class="dn dn--low" data-n="12"><b>One closing ask, and the helpers meet again.</b> The navy panel sits on white, so navy never touches the pale bubble band above or a navy footer below. "Take the SICA test" is the same hot-pink button as in the hero and chapter 1.</aside>
+  <div class="wrap">
+    <div class="final-panel dark" data-reveal>
+      <div class="crew" aria-hidden="true">
+        <span class="helper lens"><svg viewBox="0 0 130 140" focusable="false" overflow="visible"><rect x="80" y="84" width="20" height="56" rx="10" transform="rotate(-40 90 112)" fill="#D83995"/><circle cx="56" cy="56" r="46" fill="#09318D" stroke="#fff" stroke-width="3"/><circle cx="56" cy="56" r="35" fill="#DDF3FB"/><circle class="eye-w" cx="56" cy="54" r="17" fill="#fff"/><circle class="pupil" cx="56" cy="58" r="8" fill="#09318D"/><path d="M44 76 Q56 84 68 76" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg></span>
+        <span class="helper pencil"><svg viewBox="0 0 90 200" focusable="false" overflow="visible"><path d="M16 96 C 2 86, -4 70, 4 60" fill="none" stroke="#09318D" stroke-width="5" stroke-linecap="round"/><path d="M74 96 C 88 86, 94 70, 86 60" fill="none" stroke="#09318D" stroke-width="5" stroke-linecap="round"/><rect x="18" y="10" width="54" height="26" rx="10" fill="#D83995"/><rect x="18" y="32" width="54" height="12" fill="#9DB7FF"/><rect x="18" y="42" width="54" height="104" fill="#FD91CC"/><rect x="36" y="42" width="18" height="104" fill="#FFB8DD"/><path d="M18 146 L45 192 L72 146z" fill="#F7D9C8"/><path d="M37 178 L45 192 L53 178z" fill="#09318D"/><circle class="eye-w" cx="34" cy="80" r="7" fill="#fff"/><circle class="pupil" cx="34" cy="82" r="3.4" fill="#09318D"/><circle class="eye-w" cx="56" cy="80" r="7" fill="#fff"/><circle class="pupil" cx="56" cy="82" r="3.4" fill="#09318D"/><path d="M36 102 Q45 112 54 102" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg></span>
+        <span class="helper gear"><svg viewBox="0 0 120 120" focusable="false" overflow="visible"><path d="M53 6h14l3 13 10 4 11-8 10 10-8 11 4 10 13 3v14l-13 3-4 10 8 11-10 10-11-8-10 4-3 13H53l-3-13-10-4-11 8-10-10 8-11-4-10-13-3V53l13-3 4-10-8-11 10-10 11 8 10-4z" fill="#3366FF"/><circle cx="60" cy="60" r="30" fill="#EEF2FF"/><circle class="eye-w" cx="50" cy="56" r="7" fill="#fff"/><circle class="pupil" cx="50" cy="58" r="3.4" fill="#09318D"/><circle class="eye-w" cx="70" cy="56" r="7" fill="#fff"/><circle class="pupil" cx="70" cy="58" r="3.4" fill="#09318D"/><path d="M50 72 Q60 80 70 72" fill="none" stroke="#09318D" stroke-width="4" stroke-linecap="round"/></svg></span>
+      </div>
+      <h2 id="end-h">Start with how your child learns</h2>
+      <p class="lead">Take the SICA test in LearningSpace, then pick the books and projects that fit.</p>
+      <div class="ctas">
+        <a class="btn btn--primary" href="https://learningspace.edunique.in/">Take the SICA test</a>
+        <a class="btn btn--secondary" href="#shop">Shop books and kits</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <aside class="dn" data-n="13"><b>System caps in this mock.</b> 3 button styles (hot-pink primary, white secondary, wavy text link) in 2 sizes; radii 14, 26 and circle; 2 shadows (navy 6px and 3px); 7 type sizes; 3 section paddings; 1 numbered chip; 1 media frame (+ tape for video); motion: 3 durations, 2 easings.</aside>
+  <div class="wrap">
+    <img src="assets/edunique-logo-bluepink.png" alt="EduNique" width="300" height="70" loading="lazy">
+    <ul>
+      <li><a class="link" href="#shop">Shop</a></li>
+      <li><a class="link" href="#understand">SICA test</a></li>
+      <li><a class="link" href="#aura">AI Voice Tutor</a></li>
+      <li><a class="link" href="#founder">About</a></li>
+      <li><a class="link" href="https://skillioner-new.local/contact-us/">Contact</a></li>
+    </ul>
+    <p>Design mock for review, built only from the current staging copy and assets. Nothing on the live site has changed.</p>
+  </div>
+</footer>
+
+<p class="sr" aria-live="polite" id="announce"></p>
+<button type="button" class="notes-toggle" aria-pressed="false" id="notes-toggle">Show design notes</button>
+
+<script>
+(function(){
+  var d=document, root=d.documentElement;
+  root.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* calm reveal: media frames and grids only */
+  var els=[].slice.call(d.querySelectorAll('[data-reveal]'));
+  if(reduce||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')})}
+  else{
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{rootMargin:'0px 0px -10% 0px'});
+    els.forEach(function(e){io.observe(e)});
+  }
+
+  /* tabs with arrow keys */
+  var tabs=[].slice.call(d.querySelectorAll('[role=tab]'));
+  function select(t){
+    tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;d.getElementById(x.getAttribute('aria-controls')).hidden=!on});
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){select(t)});
+    t.addEventListener('keydown',function(e){
+      var n=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0; if(!n)return;
+      e.preventDefault(); var nt=tabs[(i+n+tabs.length)%tabs.length]; select(nt); nt.focus();
+    });
+  });
+
+  /* signature spring: only when something is added */
+  var count=0, badge=d.getElementById('cart-count'), cart=d.getElementById('cart'), live=d.getElementById('announce');
+  function pop(el){el.classList.remove('popped');void el.offsetWidth;el.classList.add('popped')}
+  d.querySelectorAll('.add').forEach(function(b){
+    b.addEventListener('click',function(){
+      count++; badge.textContent=count; cart.setAttribute('aria-label','Cart, '+count+(count===1?' item':' items'));
+      pop(badge); pop(b);
+      b.textContent='Added';
+      live.textContent='Added '+b.dataset.name+' to the cart. '+count+(count===1?' item':' items')+' in the cart.';
+      clearTimeout(b._t); b._t=setTimeout(function(){b.textContent='Add to cart'},1800);
+    });
+  });
+
+  /* design notes layer: each note becomes a numbered pin that opens its card */
+  d.querySelectorAll('.dn').forEach(function(n){
+    var card=d.createElement('div'); card.className='card'; card.id='note-'+n.dataset.n;
+    while(n.firstChild){card.appendChild(n.firstChild)}
+    var pin=d.createElement('button'); pin.type='button'; pin.className='pin'; pin.textContent=n.dataset.n;
+    pin.setAttribute('aria-label','Design note '+n.dataset.n); pin.setAttribute('aria-expanded','false'); pin.setAttribute('aria-controls',card.id);
+    pin.addEventListener('click',function(){var o=n.classList.toggle('open');pin.setAttribute('aria-expanded',o)});
+    n.setAttribute('aria-label','Design note '+n.dataset.n);
+    n.appendChild(pin); n.appendChild(card);
+  });
+
+  var tg=d.getElementById('notes-toggle');
+  tg.addEventListener('click',function(){
+    var on=d.body.classList.toggle('notes-on');
+    tg.setAttribute('aria-pressed',on); tg.textContent=on?'Hide design notes':'Show design notes';
+  });
+  if(location.hash==='#notes'){tg.click()}
+})();
+</script>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script>
+/* Motion (v2). Every element is visible without this script; html.motion (set in <head> only when the visitor
+   allows motion) hides the hero pieces until the intro places them. The carousel works without motion too. */
+(function(){
+  var d=document, root=d.documentElement;
+  function q(s,c){return (c||d).querySelector(s)}
+  function qa(s,c){return [].slice.call((c||d).querySelectorAll(s))}
+  var motion=root.classList.contains('motion') && window.gsap && window.ScrollTrigger;
+  var wide=window.matchMedia('(min-width: 901px)').matches;
+
+  /* ---------- SICA carousel (works with or without motion) ---------- */
+  (function(){
+    var box=q('.sica-show'); if(!box) return;
+    var slides=qa('.slide',box), bars=qa('.bar',box), n=slides.length, i=0;
+    var title=q('.show-title',box), desc=q('.show-desc',box), count=q('.show-count',box), num=q('.show-n',box), text=q('.show-text',box);
+    var play=q('.ctl.play',box), STEP=2.5, userPaused=!motion, hovering=false, inView=false, timer=null, kb=null;
+    function setBars(){bars.forEach(function(b,k){b.querySelector('i').style.setProperty('--fill',k<i?1:0)})}
+    function startTimer(){
+      if(timer) timer.kill();
+      var fill={v:0}, bar=bars[i].querySelector('i');
+      if(window.gsap){
+        timer=gsap.to(fill,{v:1,duration:STEP,ease:'none',paused:true,onUpdate:function(){bar.style.setProperty('--fill',fill.v)},onComplete:function(){go(i+1)}});
+      }
+      sync();
+    }
+    function sync(){ if(!timer) return; (!userPaused && !hovering && inView) ? timer.play() : timer.pause(); }
+    function go(k,instant){
+      var from=slides[i]; i=(k+n)%n; var to=slides[i];
+      title.textContent=to.dataset.title; desc.textContent=to.dataset.text; count.textContent='· '+(i+1)+' of '+n; num.textContent=i+1;
+      setBars();
+      if(motion && !instant && from!==to){
+        gsap.set(to,{visibility:'visible'}); to.classList.add('is-on');
+        gsap.fromTo(to,{autoAlpha:0},{autoAlpha:1,duration:.8,ease:'power2.out'});
+        gsap.fromTo(q('.shot',to),{scale:.94,y:26},{scale:1,y:0,duration:1.1,ease:'expo.out'});
+        gsap.to(from,{autoAlpha:0,duration:.8,ease:'power2.out',onComplete:function(){from.classList.remove('is-on')}});
+        gsap.to(q('.shot',from),{scale:1.03,duration:.8,ease:'power2.out'});
+        gsap.fromTo(text,{autoAlpha:0,y:12},{autoAlpha:1,y:0,duration:.6,ease:'power3.out'});
+        gsap.fromTo(num,{scale:.4,rotation:-30},{scale:1,rotation:0,duration:.6,ease:'back.out(2.4)'});
+        if(kb) kb.kill(); kb=gsap.fromTo(q('.bg',to),{scale:1},{scale:1.12,duration:STEP+1.5,ease:'none'});
+      } else { slides.forEach(function(s){s.classList.toggle('is-on',s===to); s.style.visibility=s===to?'visible':''; s.style.opacity=s===to?1:''}) }
+      startTimer();
+    }
+    q('.ctl.next',box).addEventListener('click',function(){go(i+1)});
+    q('.ctl.prev',box).addEventListener('click',function(){go(i-1)});
+    bars.forEach(function(b,k){b.addEventListener('click',function(){go(k)})});
+    function setPaused(p){userPaused=p; play.setAttribute('aria-pressed',p); play.setAttribute('aria-label',p?'Play the slides':'Pause the slides'); sync()}
+    play.addEventListener('click',function(){setPaused(!userPaused)});
+    setPaused(userPaused);
+    // no pause on hover: the carousel fills the screen, so the pointer is almost always over it. Pause button, focus and leaving the screen pause it.
+    box.addEventListener('focusin',function(){hovering=true;sync()}); box.addEventListener('focusout',function(){hovering=false;sync()});
+    box.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){go(i+1)} if(e.key==='ArrowLeft'){go(i-1)}});
+    if('IntersectionObserver' in window){ new IntersectionObserver(function(es){inView=es[0].isIntersecting;sync()},{threshold:.45}).observe(box) } else {inView=true}
+    // all screens are loaded before they are needed
+    slides.forEach(function(s){qa('img',s).forEach(function(im){im.loading='eager'})});
+    go(0,true);
+  })();
+
+  if(!motion){ root.classList.remove('motion'); return; }
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ---------- helpers' eyes follow the pointer; someone blinks every few seconds ---------- */
+  var pupils=qa('.helper .pupil').map(function(p){return {el:p,x:gsap.quickTo(p,'x',{duration:.35,ease:'power3'}),y:gsap.quickTo(p,'y',{duration:.35,ease:'power3'}),r:+p.getAttribute('r')}});
+  var px=0,py=0,raf=0;
+  function look(){raf=0; var vh=innerHeight; pupils.forEach(function(p){var r=p.el.getBoundingClientRect(); if(r.bottom<0||r.top>vh) return;
+    var dx=px-(r.left+r.width/2), dy=py-(r.top+r.height/2), len=Math.max(1,Math.hypot(dx,dy)), reach=Math.min(1,len/260)*(p.r>5?6:3.2);
+    p.x(dx/len*reach); p.y(dy/len*reach);})}
+  if(matchMedia('(hover: hover)').matches) addEventListener('pointermove',function(e){px=e.clientX;py=e.clientY;if(!raf)raf=requestAnimationFrame(look)},{passive:true});
+  var helpers=qa('.helper svg');
+  (function blink(){
+    var h=helpers[Math.floor(Math.random()*helpers.length)], r=h&&h.getBoundingClientRect();
+    if(r && r.top<innerHeight && r.bottom>0){ gsap.fromTo(qa('.eye-w,.pupil',h),{scaleY:1},{scaleY:.1,duration:.08,yoyo:true,repeat:1,transformOrigin:'50% 50%',ease:'power1.in'}) }
+    gsap.delayedCall(gsap.utils.random(1.6,3.4),blink);
+  })();
+
+  /* ---------- 1 HERO: stickers slap down, the mat pops, products drop in and squash, helpers pop, tags stick ---------- */
+  (function(){
+    var stage=q('.stage'); if(!stage) return;
+    var s=wide?1:.6;
+    var tl=gsap.timeline({delay:.15});
+    tl.fromTo('.hero .stk',{autoAlpha:0,scale:1.7,rotation:function(k){return [-14,12,-10][k]}},{autoAlpha:1,scale:1,rotation:0,duration:.55,stagger:.16,ease:'back.out(2.2)'})
+      .fromTo(q('.mat-circle',stage),{autoAlpha:0,scale:.55,rotation:-10},{autoAlpha:1,scale:1,rotation:0,duration:.8,ease:'elastic.out(1,.6)'},.2);
+    ['.s-tablet','.s-books','.s-box','.s-zing'].forEach(function(sel,k){
+      var el=q(sel,stage), at=.45+k*.16;
+      tl.fromTo(el,{autoAlpha:0,y:-420*s,rotation:[-20,16,-12,22][k]},{autoAlpha:1,y:0,rotation:0,duration:.75,ease:'power2.in'},at)
+        .to(el,{scaleY:.86,scaleX:1.08,transformOrigin:'50% 100%',duration:.09,ease:'power1.out'},at+.75)
+        .to(el,{scaleY:1,scaleX:1,duration:.55,ease:'elastic.out(1.2,.4)'},at+.84);
+    });
+    tl.fromTo(qa('.helper',stage),{autoAlpha:0,scale:0,y:30},{autoAlpha:1,scale:1,y:0,duration:.5,stagger:.12,ease:'back.out(2.6)'},1.4)
+      .fromTo(qa('.tag',stage),{autoAlpha:0,scale:1.6},{autoAlpha:1,scale:1,duration:.35,stagger:.12,ease:'back.out(2.4)'},1.7)
+      .fromTo('.hero .lead, .hero .ctas, .hero .aura-chip',{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.6,stagger:.1,ease:'power3.out'},.5);
+    // idle life while the hero is on screen
+    var idle=[
+      gsap.to('.s-lens',{y:-9,rotation:-6,duration:1.6,ease:'sine.inOut',yoyo:true,repeat:-1,paused:true}),
+      gsap.to('.s-pencil',{y:-7,rotation:4,duration:1.2,ease:'sine.inOut',yoyo:true,repeat:-1,paused:true}),
+      gsap.to('.s-gear .cog',{rotation:360,svgOrigin:'60 60',duration:9,ease:'none',repeat:-1,paused:true}),
+      gsap.to('.s-zing',{rotation:3,transformOrigin:'50% 95%',duration:1.4,ease:'sine.inOut',yoyo:true,repeat:-1,paused:true}),
+      gsap.to('.s-box',{y:-6,duration:2.2,ease:'sine.inOut',yoyo:true,repeat:-1,paused:true})
+    ];
+    tl.eventCallback('onComplete',function(){
+      ScrollTrigger.create({trigger:'.hero',start:'top top',end:'bottom top',onToggle:function(st){idle.forEach(function(t){st.isActive?t.play():t.pause()})}});
+      if(scrollY<stage.getBoundingClientRect().bottom) idle.forEach(function(t){t.play()});
+    });
+    // depth: the stack leans toward the pointer, each piece by its own distance
+    if(wide && matchMedia('(hover: hover)').matches){
+      var layers=[['.s-tablet',10],['.s-books',16],['.s-box',22],['.s-zing',26],['.mat-circle',5]].map(function(a){var el=q(a[0],stage);return {x:gsap.quickTo(el,'xPercent',{duration:.8,ease:'power3'}),y:gsap.quickTo(el,'yPercent',{duration:.8,ease:'power3'}),k:a[1]/10}});
+      q('.hero').addEventListener('pointermove',function(e){var r=stage.getBoundingClientRect(), nx=(e.clientX-(r.left+r.width/2))/r.width, ny=(e.clientY-(r.top+r.height/2))/r.height;
+        layers.forEach(function(l){l.x(nx*l.k*2.2);l.y(ny*l.k*2.2)})});
+      q('.hero').addEventListener('pointerleave',function(){layers.forEach(function(l){l.x(0);l.y(0)})});
+    }
+  })();
+
+  /* ---------- 2 PLAN: each card's art settles into its tilt, its helper pops in; hovering a card makes it jump ---------- */
+  (function(){
+    var worlds=qa('.world'); if(!worlds.length) return;
+    gsap.set(qa('.world .art .frame'),{autoAlpha:0});
+    ScrollTrigger.batch(worlds,{start:'top 80%',once:true,onEnter:function(els){
+      els.forEach(function(w,k){
+        var frames=qa('.art .frame',w), helper=q('.wc',w);
+        gsap.fromTo(frames,{autoAlpha:0,y:-90,rotation:function(j){return j%2?14:-14}},{autoAlpha:1,y:0,rotation:function(j,el){return el.classList.contains('tilt-r')?2.5:-2.5},duration:.7,delay:k*.14+0.05,ease:'back.out(1.7)',stagger:.08});
+        gsap.fromTo(helper,{autoAlpha:0,scale:0,rotation:-40},{autoAlpha:1,scale:1,rotation:0,duration:.6,delay:k*.14+.35,ease:'back.out(2.4)'});
+      });
+    }});
+    worlds.forEach(function(w){
+      var h=q('.wc',w);
+      function jump(){ if(gsap.isTweening(h)) return; gsap.timeline().to(h,{y:-34,rotation:-10,duration:.25,ease:'power2.out'}).to(h,{y:0,rotation:0,duration:.55,ease:'bounce.out'}); }
+      w.addEventListener('pointerenter',jump);
+    });
+    var mic=q('.aura-strip .num');
+    if(mic){ gsap.to(mic,{scale:1.08,duration:.9,ease:'sine.inOut',yoyo:true,repeat:-1,scrollTrigger:{trigger:mic,start:'top bottom',end:'bottom top',toggleActions:'play pause resume pause'}}); }
+  })();
+
+  /* ---------- 3 UNDERSTAND: the head draws, the magnifier sweeps it, each group of tests pops in ---------- */
+  (function(){
+    var map=q('.map'); if(!map) return;
+    var lens=q('.map-lens',map);
+    gsap.set(qa('.head path',map),{strokeDasharray:1,strokeDashoffset:1});
+    var tl=gsap.timeline({scrollTrigger:{trigger:map,start:'top 75%',once:true}});
+    tl.to(q('.head .outline',map),{strokeDashoffset:0,duration:1.1,ease:'power2.inOut'})
+      .to(q('.head .dots',map),{strokeDashoffset:0,duration:.8,ease:'power1.inOut'},.5);
+    if(lens){ tl.fromTo(lens,{autoAlpha:0,scale:.4},{autoAlpha:1,scale:1,duration:.4,ease:'back.out(2)'},.3)
+      .to(lens,{keyframes:{xPercent:[0,-160,-90,0],yPercent:[0,60,150,0]},duration:1.8,ease:'sine.inOut'},.7); }
+    qa('.g',map).forEach(function(g,k){
+      tl.fromTo(q('p',g),{autoAlpha:0,scale:.5,rotation:-10},{autoAlpha:1,scale:1,rotation:0,duration:.4,ease:'back.out(2.4)',clearProps:'transform'},.9+k*.25)
+        .fromTo(qa('li',g),{autoAlpha:0,y:12},{autoAlpha:1,y:0,duration:.3,stagger:.05,ease:'back.out(2)'},1.05+k*.25);
+    });
+  })();
+
+  /* hand-off helpers hop once as they arrive, to point the way on */
+  qa('.handoff').forEach(function(h){
+    var hp=q('.helper',h), b=q('.bubble-link',h);
+    gsap.timeline({scrollTrigger:{trigger:h,start:'top 85%',once:true}})
+      .fromTo(hp,{y:30,autoAlpha:0},{y:0,autoAlpha:1,duration:.45,ease:'back.out(2.2)'})
+      .to(hp,{y:-16,duration:.18,ease:'power2.out'}).to(hp,{y:0,duration:.4,ease:'bounce.out'})
+      .fromTo(b,{x:-24,autoAlpha:0},{x:0,autoAlpha:1,duration:.5,ease:'power3.out'},.25);
+  });
+
+  /* ---------- 4 LEARN: the pencil line draws, the clips float at their own pace, the tape sticks on ---------- */
+  (function(){
+    var line=q('.scribble path');
+    if(line){ gsap.fromTo(line,{strokeDasharray:1,strokeDashoffset:1},{strokeDashoffset:0,duration:1,ease:'power2.inOut',scrollTrigger:{trigger:'#l-h',start:'top 80%',once:true}}); }
+    var clips=qa('.clips .frame');
+    clips.forEach(function(c,k){
+      c.removeAttribute('data-reveal'); c.classList.add('in');
+      gsap.fromTo(c,{y:k?120:40,rotation:k?6:-6},{y:k?-40:-10,rotation:k?2.5:-2.5,ease:'none',scrollTrigger:{trigger:'.clips',start:'top bottom',end:'bottom top',scrub:.8}});
+    });
+    var box=q('.sub-grid img');
+    if(box){ gsap.fromTo(box,{rotation:-24,scale:.6,autoAlpha:0},{rotation:-4,scale:1,autoAlpha:1,duration:.9,ease:'elastic.out(1,.55)',scrollTrigger:{trigger:box,start:'top 85%',once:true}});
+      box.addEventListener('pointerenter',function(){gsap.fromTo(box,{rotation:-4},{keyframes:{rotation:[-10,4,-7,-4]},duration:.6,ease:'none'})}); }
+  })();
+
+  /* ---------- 5 APPLY: the build. Scroll writes the plan, flies the parts in, wires it up and switches it on ---------- */
+  (function(){
+    var svg=q('.build'); if(!svg) return;
+    var steps=qa('.apply-steps li'), list=q('.apply-steps'), idea=q('.idea');
+    list.classList.add('live');
+    function stepOn(k){steps.forEach(function(li,j){li.classList.toggle('on',j===k)})}
+    stepOn(0);
+    var parts={wheelL:{x:-260,y:-40,r:-360},wheelR:{x:300,y:-30,r:360},botBody:{x:0,y:-260,r:-14},botArmL:{x:-200,y:-120,r:-90},botArmR:{x:220,y:-150,r:120},botHead:{x:-60,y:-300,r:30}};
+    var tl=gsap.timeline({defaults:{ease:'power2.out'}});
+    gsap.set('#wire, #bp .sketch',{strokeDasharray:1,strokeDashoffset:1});
+    gsap.set('.spark',{scale:0,transformOrigin:'50% 50%'});
+    gsap.set('#armR',{svgOrigin:'540 302'}); gsap.set('#armL',{svgOrigin:'420 302'});
+    // 1 Read: the plan card stands up and its robot draws itself
+    tl.addLabel('read')
+      .fromTo('#bp',{scaleY:0,svgOrigin:'102 356'},{scaleY:1,duration:.6,ease:'back.out(1.8)'})
+      .to('#bp .sketch',{strokeDashoffset:0,duration:1.2,ease:'none'})
+      .fromTo('#kidHead',{rotation:0,svgOrigin:'480 250'},{rotation:-8,duration:.5},'<');
+    // 2 Understand: each part flies in on an arc and lands with a squash, the child's hand guiding it
+    tl.addLabel('parts').call(stepOn,[1],'parts');
+    var order=['wheelL','wheelR','botBody','botArmL','botArmR','botHead'];
+    order.forEach(function(id,k){
+      var p=parts[id], at='parts+='+(k*.55);
+      gsap.set('#'+id,{x:p.x,y:p.y,rotation:p.r,transformOrigin:'50% 50%',autoAlpha:0});
+      tl.to('#'+id,{x:0,autoAlpha:1,duration:.7,ease:'power1.inOut'},at)
+        .to('#'+id,{keyframes:{y:[p.y-70,0]},duration:.7,ease:'none'},at)
+        .to('#'+id,{rotation:0,duration:.7,ease:'power2.out'},at)
+        .to('#'+id,{scaleY:.86,scaleX:1.08,transformOrigin:'50% 100%',duration:.08,ease:'power1.out'},at+'+=0.7')
+        .to('#'+id,{scaleY:1,scaleX:1,duration:.35,ease:'elastic.out(1.2,.45)'},at+'+=0.78')
+        .to('#armL',{rotation:k%2?-6:5,duration:.3,ease:'sine.inOut'},at+'+=0.45');
+    });
+    tl.to('#kidHead',{rotation:0,duration:.4},'parts+=3');
+    // 3 Create: the wire connects, the switch flips, the robot wakes up
+    tl.addLabel('create','parts+=3.5').call(stepOn,[2],'create')
+      .to('#wire',{strokeDashoffset:0,duration:.8,ease:'power1.inOut'},'create')
+      .to('#knob',{attr:{cx:114},duration:.25,ease:'back.out(3)'},'create+=0.9')
+      .to('.led',{fill:function(k){return ['#FF3366','#9DB7FF','#0593C6'][k]},duration:.12,stagger:.15},'create+=1.1')
+      .to('.bot-eye',{fill:'#0593C6',duration:.2},'create+=1.5')
+      .fromTo('.eye-ring',{opacity:0,scale:.6,transformOrigin:'50% 50%'},{opacity:1,scale:1,duration:.4,ease:'back.out(2)'},'create+=1.5')
+      .fromTo('.ant-ring',{opacity:0,scale:.4,transformOrigin:'50% 50%'},{opacity:1,scale:1.25,duration:.5,ease:'power2.out'},'create+=1.6')
+      .to('.spark',{scale:1,rotation:90,duration:.5,ease:'back.out(3)',stagger:.04},'create+=1.7')
+      .to('.kid-smile',{opacity:0,duration:.1},'create+=1.8').to('.kid-wow',{opacity:1,duration:.1},'create+=1.8')
+      .to('#armR',{rotation:-150,duration:.45,ease:'back.out(1.8)'},'create+=1.8')
+      .to('#armL',{rotation:-8,duration:.3},'create+=1.8')
+      // wave and roll
+      .to('#botArmR',{rotation:-130,svgOrigin:'300 268',duration:.3,ease:'power2.out'},'create+=2.2')
+      .to('#botArmR',{keyframes:{rotation:[-130,-100,-130,-100,-130]},svgOrigin:'300 268',duration:.8,ease:'none'},'create+=2.5')
+      .to('#bot',{x:22,duration:.8,ease:'power1.inOut'},'create+=2.5')
+      .to('#wheelL, #wheelR',{rotation:120,transformOrigin:'50% 50%',duration:.8,ease:'power1.inOut'},'create+=2.5')
+      .to('.spark',{autoAlpha:0,scale:1.4,duration:.4},'create+=3')
+      .to(idea,{color:'#D83995',duration:.3},'create+=2.6');
+    if(wide){
+      ScrollTrigger.create({trigger:'#apply .split',start:'center center',end:'+=170%',pin:'#apply',pinSpacing:true,scrub:.7,animation:tl,anticipatePin:1});
+    } else {
+      tl.pause(0); ScrollTrigger.create({trigger:svg,start:'top 70%',once:true,onEnter:function(){tl.play()}});
+    }
+    // the gear in the corner watches, and spins faster once the robot is on
+    gsap.to('#gearHelper .cog',{rotation:360,svgOrigin:'60 60',duration:6,ease:'none',repeat:-1});
+    qa('.kid-eye').forEach(function(e){ (function b(){ gsap.fromTo(e,{scaleY:1},{scaleY:.1,transformOrigin:'50% 50%',duration:.08,yoyo:true,repeat:1,delay:gsap.utils.random(2,4),onComplete:b}) })(); });
+  })();
+
+  addEventListener('load',function(){ScrollTrigger.refresh()});
+})();
+</script>
+</body>
+</html>
